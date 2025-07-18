@@ -1,0 +1,21 @@
+> npm init{
+    package name: (electron)
+    version: (1.0.0)
+    description: App to resize image dimensions
+    entry point: (index.js) main.js
+    test command:
+    git repository:
+    keywords:
+    author: Alexangelo Andrews
+    liscense: (ISC) MIT
+}
+
+(next, add this to package.json file = {
+    "productName": Procurement Manager
+})
+
+(next, under "scripts" in package.json add a start script = {
+    "start": "electron ."
+})
+
+>npm i electron
