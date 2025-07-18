@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="./style.css">
+    <script src="./renderer.js" defer></script>
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-sclae=1.0">
+    <title>Procurement Manager</title>
+</head>
+<body >
+    <!-- Home Page---------------------------------------------------------------------------------- -->
+    <div id="HomePage" style="display: none;">
+        <div class="card" id="homeCard">
+            <div id="homeCardHeadingDiv">
+                <h1>Procurement Manager</h1>
+            </div>
+            <div id="homeCardContentDiv">
+                <div class="button" id="ScrapePageButton">UPDATE SUPPLIER DATABASE</div>
+                <div class="button" id="SupplierPageButton">BROWSE SUPPLIERS</div>
+                <div class="button" id="RequestPageButton">MANAGE SUPPLY REQUEST DATA</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Update Database Page----------------------------------------------------------------------- -->
+    <div id="ScrapePage" style="display: flex;">
+        <div class="card" id="S_P_MainDiv">
+            <h1>Update Supplier Database Page</h1>
+            <input type="text" class="inputField" id="email" placeholder="Email">
+            <input type="text" class="inputField" id="password" placeholder="Password">
+            <div class="button" id="scrapeButton">
+                UPDATE DATABASE
+            </div>
+            <div id="ScrapeHomeButton" class="button">
+                HOME
+            </div>
+        </div>
+    </div>
+
+    <!--Browse OPR Suppliers Page--------------------------------------------------------------- -->
+    <div id="SupplierPage" style="display: none;">
+        <div class="card" id="S_P_navbar">
+            <div id="S_P_navbar_left">
+                <div id="SupplierHomeButton" class="button">
+                    Home
+                </div>
+            </div>
+            <div id="S_P_navbar_middle">
+                <input type="Search" class="inputField" id="S_P_searchbar">
+                <div id="S_P_searchButton" class="button">
+                    SEARCH
+                </div>
+                <div id="S_P_clearButton" class="button">
+                    CLEAR
+                </div>
+            </div>
+            <div id="S_P_navbar_right">
+                <div class="dropdownMenu">
+                    <label for="Layer1">Layer 1</label>
+                    <select name="Layer1" id="Layer1">
+                        <option value="none">None</option>
+                    </select>
+                </div>
+                <div class="dropdownMenu">
+                    <label for="Layer2">Layer 2</label>
+                    <select name="Layer2" id="Layer2">
+                        <option value="none">None</option>
+                    </select>
+                </div>
+                <div class="dropdownMenu">
+                    <label for="Layer3">Layer 3</label>
+                    <select name="Layer3" id="Layer3">
+                        <option value="none">None</option>
+                    </select>
+                </div>
+                <div class="dropdownMenu">
+                    <label for="Layer4">Layer 4</label>
+                    <select name="Layer4" id="Layer4">
+                        <option value="none">None</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div id="S_P_contentArea">
+            Table of Data will be here
+        </div>
+    </div>
+
+    <!-- Manage Supplier Request Page-------------------------------------------------------------- -->
+    <div id="RequestPage" style="display: none;">
+        <h1>Suppy Requests Page</h1>
+        <div id="RequestHomeButton" class="button">
+            Home
+        </div>
+    </div>
+</body>
+</html>

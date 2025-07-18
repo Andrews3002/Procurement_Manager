@@ -1,0 +1,146 @@
+*{
+    box-sizing: border-box;
+    margin: 0%;
+    padding: 0%;
+    font-family: "Comfortaa", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+html, 
+body, 
+#HomePage,
+#ScrapePage,
+#SupplierPage,
+#RequestPage{
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width:  100vw;
+    background-color: rgb(140, 245, 240);
+}
+
+.card{
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+
+.button{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 70%;
+    border-radius: 30px;
+    cursor: pointer;
+    background-color: rgb(55, 114, 241);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    color: white;
+}
+
+.inputField{
+    border-radius: 10px;
+    height: 40px;
+    width: 70%;
+    padding-left: 2%;
+}
+
+.dropdownMenu{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#homeCard{
+    position: relative;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 90%;
+    width: 45%;
+}
+
+#homeCardHeadingDiv{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 30%;
+    width: 100%;
+}
+
+#homeCardContentDiv{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15%;
+    height: 70%;
+    width: 100%;
+}
+
+#S_P_MainDiv{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10%;
+    height: 90%;
+    width: 60%;
+}
+
+#S_P_navbar{
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+    align-items: center;
+    height: 20%;
+    width: 100%;
+    border-radius: 0;
+}
+
+#S_P_navbar_left{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+#S_P_navbar_middle{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+#S_P_navbar_right{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 5%;
+    font-size:medium;
+    height: 100%;
+    width: 100%;
+}
+
