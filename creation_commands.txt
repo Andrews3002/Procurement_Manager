@@ -1,5 +1,5 @@
 > npm init{
-    package name: (electron)
+    package name: (procurement_manager)
     version: (1.0.0)
     description: App to resize image dimensions
     entry point: (index.js) main.js
@@ -11,7 +11,7 @@
 }
 
 (next, add this to package.json file = {
-    "productName": Procurement Manager
+    "productName": Procurement_Manager
 })
 
 (next, under "scripts" in package.json add a start script = {
