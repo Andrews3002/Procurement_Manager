@@ -101,58 +101,48 @@
     </div>
 
     <!-- Manage Supplier Request Page-------------------------------------------------------------- -->
-    <div id="RequestPage" style="display: flex;">
-        <div id="RequestHomeButton" class="button">
-            Home
+    <div id="RequestPage" style="display: none;">
+        <div id="buttonsRibbon">
+            <div id="RequestHomeButton" class="button">
+                <img src="./assets/images/home.png" alt="" class="buttonIcons" id="requestHomeIcon">
+                Home
+            </div>
+            <div id="RequestAddEntryButton" class="button">
+                ADD ENTRY
+            </div>
         </div>
         <table class="card" id="supplyRequestTable">
             <thead class="tableHeaderRow">
                 <tr>
-                    <th>Column 1</th>
-                    <th>Column 2</th>
-                    <th>Column 3</th>
-                    <th>Column 4</th>
-                    <th>Column 5</th>
+                    <th>Supplier Name</th>
+                    <th>Product/Service</th>
+                    <th>Rating</th>
                 </tr>
             </thead>
             <tbody class="tableContentRows">
-                <tr >
-                    <td>Sample_Data</td>
-                    <td>Sample_Data</td>
-                    <td>Sample_Data</td>
-                    <td>Sample_Data</td>
-                    <td>Sample_Data</td>
-                </tr>
-                <tr>
-                    <td>Sample_Data</td>
-                    <td>Sample_Data</td>
-                    <td>Sample_Data</td>
-                    <td>Sample_Data</td>
-                    <td>Sample_Data</td>
-                </tr>
-                <tr>
-                    <td>Sample_Data</td>
-                    <td>Sample_Data</td>
-                    <td>Sample_Data</td>
-                    <td>Sample_Data</td>
-                    <td>Sample_Data</td>
-                </tr>
-                <tr>
-                    <td>Sample_Data</td>
-                    <td>Sample_Data</td>
-                    <td>Sample_Data</td>
-                    <td>Sample_Data</td>
-                    <td>Sample_Data</td>
-                </tr>
-                <tr>
-                    <td>Sample_Data</td>
-                    <td>Sample_Data</td>
-                    <td>Sample_Data</td>
-                    <td>Sample_Data</td>
-                    <td>Sample_Data</td>
-                </tr>       
+                   <!-- insert data for each supply request -->
             </tbody>     
         </table>
     </div>
+
+    <form action="" class="card" id="addEntryForm" style="display: flex;">
+        <div class="formEntryDiv">
+            <label for="supplierName">Supplier Name</label>
+            <input type="text" class="inputField" id="supplierName" placeholder="Supplier Name">
+        </div>
+
+        <div class="formEntryDiv">
+            <label for="productOrService">Product/Service</label>
+            <input type="text" class="inputField" id="productOrService" placeholder="Product/Service">
+        </div>
+        
+        <div class="formEntryDiv">
+            <label for="rating">Rating</label>
+            <input type="number" class="inputField" id="rating" placeholder="Rating">
+        </div>
+
+        <div class="button" id="entryFormAddButton">ADD</div>
+        <div class="button" id="entryFormCancelButton">CANCEL</div>
+    </form>
 </body>
 </html>

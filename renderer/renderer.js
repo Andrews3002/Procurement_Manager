@@ -11,6 +11,9 @@ const scrapeHomeButton = document.querySelector('#ScrapeHomeButton')
 const supplierHomeButton = document.querySelector('#SupplierHomeButton')
 const requestHomeButton = document.querySelector('#RequestHomeButton')
 
+const table = document.querySelector('#supplyRequestTable tbody')
+const form = document.querySelector('#addEntryForm')
+
 function openScrapePage(){
     homePage.style.display = 'none'
     scrapePage.style.display = 'flex'
