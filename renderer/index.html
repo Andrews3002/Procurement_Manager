@@ -17,23 +17,34 @@
                 <h1>Procurement Manager</h1>
             </div>
             <div id="homeCardContentDiv">
-                <div class="button" id="ScrapePageButton">UPDATE SUPPLIER DATABASE</div>
-                <div class="button" id="SupplierPageButton">BROWSE SUPPLIERS</div>
-                <div class="button" id="RequestPageButton">MANAGE SUPPLY REQUEST DATA</div>
+                <div class="button" id="ScrapePageButton">
+                    <img class="buttonIcons" id="scrapeButtonIcon" src="./assets/images/update.png" alt="">
+                    UPDATE SUPPLIER DATABASE
+                </div>
+                <div class="button" id="SupplierPageButton">
+                    <img src="./assets/images/browse.png" alt="" class="buttonIcons" id="supplierButtonIcon">
+                    BROWSE SUPPLIERS
+                </div>
+                <div class="button" id="RequestPageButton">
+                    <img src="./assets/images/request.png" alt="" class="buttonIcons" id="requestButtonIcon">
+                    MANAGE SUPPLY REQUEST DATA
+                </div>
             </div>
         </div>
     </div>
 
     <!-- Update Database Page----------------------------------------------------------------------- -->
-    <div id="ScrapePage" style="display: flex;">
+    <div id="ScrapePage" style="display: none;">
         <div class="card" id="S_P_MainDiv">
             <h1>Update Supplier Database Page</h1>
             <input type="text" class="inputField" id="email" placeholder="Email">
             <input type="text" class="inputField" id="password" placeholder="Password">
             <div class="button" id="scrapeButton">
+                <img src="./assets/images/update.png" alt="" class="buttonIcons" id="scrapeActionButtonIcon">
                 UPDATE DATABASE
             </div>
             <div id="ScrapeHomeButton" class="button">
+                <img src="./assets/images/home.png" alt="" class="buttonIcons" id="scrapeHomeButton">
                 HOME
             </div>
         </div>
@@ -44,6 +55,7 @@
         <div class="card" id="S_P_navbar">
             <div id="S_P_navbar_left">
                 <div id="SupplierHomeButton" class="button">
+                    <img src="./assets/images/home.png" alt="" class="buttonIcons" id="supplierHomeIcon">
                     Home
                 </div>
             </div>
@@ -89,11 +101,58 @@
     </div>
 
     <!-- Manage Supplier Request Page-------------------------------------------------------------- -->
-    <div id="RequestPage" style="display: none;">
-        <h1>Suppy Requests Page</h1>
+    <div id="RequestPage" style="display: flex;">
         <div id="RequestHomeButton" class="button">
             Home
         </div>
+        <table class="card" id="supplyRequestTable">
+            <thead class="tableHeaderRow">
+                <tr>
+                    <th>Column 1</th>
+                    <th>Column 2</th>
+                    <th>Column 3</th>
+                    <th>Column 4</th>
+                    <th>Column 5</th>
+                </tr>
+            </thead>
+            <tbody class="tableContentRows">
+                <tr >
+                    <td>Sample_Data</td>
+                    <td>Sample_Data</td>
+                    <td>Sample_Data</td>
+                    <td>Sample_Data</td>
+                    <td>Sample_Data</td>
+                </tr>
+                <tr>
+                    <td>Sample_Data</td>
+                    <td>Sample_Data</td>
+                    <td>Sample_Data</td>
+                    <td>Sample_Data</td>
+                    <td>Sample_Data</td>
+                </tr>
+                <tr>
+                    <td>Sample_Data</td>
+                    <td>Sample_Data</td>
+                    <td>Sample_Data</td>
+                    <td>Sample_Data</td>
+                    <td>Sample_Data</td>
+                </tr>
+                <tr>
+                    <td>Sample_Data</td>
+                    <td>Sample_Data</td>
+                    <td>Sample_Data</td>
+                    <td>Sample_Data</td>
+                    <td>Sample_Data</td>
+                </tr>
+                <tr>
+                    <td>Sample_Data</td>
+                    <td>Sample_Data</td>
+                    <td>Sample_Data</td>
+                    <td>Sample_Data</td>
+                    <td>Sample_Data</td>
+                </tr>       
+            </tbody>     
+        </table>
     </div>
 </body>
 </html>
