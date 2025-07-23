@@ -1,5 +1,5 @@
-const fs = require('fs')
-const path = require('path')
+// const fs = require('fs')
+// const path = require('path')
 
 const homePage = document.querySelector('#HomePage')
 const scrapePage = document.querySelector('#ScrapePage')
@@ -13,6 +13,9 @@ const requestPageButton = document.querySelector('#RequestPageButton')
 const scrapeHomeButton = document.querySelector('#ScrapeHomeButton')
 const supplierHomeButton = document.querySelector('#SupplierHomeButton')
 const requestHomeButton = document.querySelector('#RequestHomeButton')
+
+const addRequestEntryButton = document.querySelector('#RequestAddEntryButton')
+const closeRequestEntryFormButton = document.querySelector('#entryFormCancelButton')
 
 const tableBody = document.querySelector('#supplyRequestTable tbody')
 const form = document.querySelector('#addEntryForm')
@@ -30,6 +33,7 @@ function openSupplierPage(){
 function openRequestPage(){
     homePage.style.display = 'none'
     requestPage.style.display = 'flex'
+    loadRequestTable(readData('requestData.json'))
 }
 
 function openHomePage(){
@@ -39,16 +43,17 @@ function openHomePage(){
     requestPage.style.display = 'none'
 }
 
-scrapePageButton.addEventListener('click', openScrapePage)
-supplierPageButton.addEventListener('click', openSupplierPage)
-requestPageButton.addEventListener('click', openRequestPage)
+function openAddRequestEntryForm(){
+    requestPage.style.display = 'none'
+    form.style.display = 'flex'
+}
 
-scrapeHomeButton.addEventListener('click', openHomePage)
-supplierHomeButton.addEventListener('click', openHomePage)
-requestHomeButton.addEventListener('click', openHomePage)
+function closeAddRequestEntryForm(){
+    form.style.display = 'none'
+    requestPage.style.display = 'flex' 
+}
 
-
-function loadData(filename){
+function readData(filename){
     const filepath = path.join(__dirname, filename)
 
     fs.readFile(filepath, 'utf8', (err, data) => {
@@ -62,6 +67,18 @@ function loadData(filename){
     })
 }
 
+function writeData(filename, data){
+    const filepath = path.join(__dirname, filename)
+
+    fs.writeFile(filepath, JSON.stringify(data, null, 2), (e) => {
+        if(e){
+            console.error('error writing to file: ', filename)
+        }
+
+        return
+    })
+}
+
 function loadRequestTable(data){
     tableBody.innerHTML = ''
 
@@ -72,7 +89,7 @@ function loadRequestTable(data){
     })
 }
 
-form.addEventListener('submit', e => {
+function submitRequestForm(e){
     e.preventDefault()
 
     const supplierName = document.querySelector('#supplierName').value.trim()
@@ -81,7 +98,7 @@ form.addEventListener('submit', e => {
 
     if (!supplierName || !productOrService || isNaN(rating)) return;
 
-    const data = loadData('requestData.json')
+    const data = readData('requestData.json')
 
     data.push({
         supplierName,
@@ -90,7 +107,21 @@ form.addEventListener('submit', e => {
     })
 
     loadRequestTable(data)
-})
+
+    writeData('requestData.json', data)
+}
+
+scrapePageButton.addEventListener('click', openScrapePage)
+supplierPageButton.addEventListener('click', openSupplierPage)
+requestPageButton.addEventListener('click', openRequestPage)
+
+scrapeHomeButton.addEventListener('click', openHomePage)
+supplierHomeButton.addEventListener('click', openHomePage)
+requestHomeButton.addEventListener('click', openHomePage)
+
+addRequestEntryButton.addEventListener('click', openAddRequestEntryForm)
+closeRequestEntryFormButton.addEventListener('click', closeAddRequestEntryForm)
+form.addEventListener('submit', submitRequestForm(e))
 
 
 

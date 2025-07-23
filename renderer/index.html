@@ -17,18 +17,18 @@
                 <h1>Procurement Manager</h1>
             </div>
             <div id="homeCardContentDiv">
-                <div class="button" id="ScrapePageButton">
+                <button class="button" id="ScrapePageButton">
                     <img class="buttonIcons" id="scrapeButtonIcon" src="./assets/images/update.png" alt="">
                     UPDATE SUPPLIER DATABASE
-                </div>
-                <div class="button" id="SupplierPageButton">
+                </button>
+                <button class="button" id="SupplierPageButton">
                     <img src="./assets/images/browse.png" alt="" class="buttonIcons" id="supplierButtonIcon">
                     BROWSE SUPPLIERS
-                </div>
-                <div class="button" id="RequestPageButton">
+                </button>
+                <button class="button" id="RequestPageButton">
                     <img src="./assets/images/request.png" alt="" class="buttonIcons" id="requestButtonIcon">
                     MANAGE SUPPLY REQUEST DATA
-                </div>
+                </button>
             </div>
         </div>
     </div>
@@ -39,14 +39,14 @@
             <h1>Update Supplier Database Page</h1>
             <input type="text" class="inputField" id="email" placeholder="Email">
             <input type="text" class="inputField" id="password" placeholder="Password">
-            <div class="button" id="scrapeButton">
+            <button class="button" id="scrapeButton">
                 <img src="./assets/images/update.png" alt="" class="buttonIcons" id="scrapeActionButtonIcon">
                 UPDATE DATABASE
-            </div>
-            <div id="ScrapeHomeButton" class="button">
+            </button>
+            <button id="ScrapeHomeButton" class="button">
                 <img src="./assets/images/home.png" alt="" class="buttonIcons" id="scrapeHomeButton">
                 HOME
-            </div>
+            </button>
         </div>
     </div>
 
@@ -54,19 +54,19 @@
     <div id="SupplierPage" style="display: none;">
         <div class="card" id="S_P_navbar">
             <div id="S_P_navbar_left">
-                <div id="SupplierHomeButton" class="button">
+                <button id="SupplierHomeButton" class="button">
                     <img src="./assets/images/home.png" alt="" class="buttonIcons" id="supplierHomeIcon">
                     Home
-                </div>
+                </button>
             </div>
             <div id="S_P_navbar_middle">
                 <input type="Search" class="inputField" id="S_P_searchbar">
-                <div id="S_P_searchButton" class="button">
+                <button id="S_P_searchButton" class="button">
                     SEARCH
-                </div>
-                <div id="S_P_clearButton" class="button">
+                </button>
+                <button id="S_P_clearButton" class="button">
                     CLEAR
-                </div>
+                </button>
             </div>
             <div id="S_P_navbar_right">
                 <div class="dropdownMenu">
@@ -101,15 +101,15 @@
     </div>
 
     <!-- Manage Supplier Request Page-------------------------------------------------------------- -->
-    <div id="RequestPage" style="display: none;">
+    <div id="RequestPage" style="display: flex;">
         <div id="buttonsRibbon">
-            <div id="RequestHomeButton" class="button">
+            <button id="RequestHomeButton" class="button">
                 <img src="./assets/images/home.png" alt="" class="buttonIcons" id="requestHomeIcon">
                 Home
-            </div>
-            <div id="RequestAddEntryButton" class="button">
+            </button>
+            <button id="RequestAddEntryButton" class="button">
                 ADD ENTRY
-            </div>
+            </button>
         </div>
         <table class="card" id="supplyRequestTable">
             <thead class="tableHeaderRow">
@@ -125,7 +125,7 @@
         </table>
     </div>
 
-    <form action="" class="card" id="addEntryForm" style="display: flex;">
+    <form action="" class="card" id="addEntryForm" style="display: none;">
         <div class="formEntryDiv">
             <label for="supplierName">Supplier Name</label>
             <input type="text" class="inputField" id="supplierName" placeholder="Supplier Name" required>
@@ -141,8 +141,9 @@
             <input type="number" class="inputField" id="rating" placeholder="Rating" required>
         </div>
 
-        <div class="button" id="entryFormAddButton">ADD</div>
-        <div class="button" id="entryFormCancelButton">CANCEL</div>
+        <button type="submit" class="button" id="entryFormAddButton">SUBMIT</button>
+        <button type="reset" class="button" id="entryFormClearButton">CLEAR</button>
+        <button class="button" id="entryFormCancelButton">CANCEL</button>
     </form>
 </body>
 </html>
