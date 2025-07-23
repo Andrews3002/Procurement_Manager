@@ -86,6 +86,10 @@ body,
     width: 100%;
 }
 
+.tableContentRows{
+    vertical-align: top;
+}
+
 #homeCard{
     position: relative;
     display:flex;

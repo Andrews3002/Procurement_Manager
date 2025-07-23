@@ -31,9 +31,9 @@ function openSupplierPage(){
 }
 
 function openRequestPage(){
-    homePage.style.display = 'none'
     requestPage.style.display = 'flex'
-    loadRequestTable(readData('requestData.json'))
+    homePage.style.display = 'none'
+    form.style.display = 'none'
 }
 
 function openHomePage(){
@@ -58,46 +58,64 @@ function readData(filename){
     console.log('readData function called successfully')
     const filepath = path.join(__dirname, filename)
 
-    fs.readFile(filepath, 'utf8', (err, data) => {
-        if (err){
-            console.log('error occured while reading file')
-            console.error('error reading file:', filename)
-            return
-        }
-
+    try{   
+        const data = fs.readFileSync(filepath, 'utf8')
         const jsonData = JSON.parse(data)
-        
         console.log('readData function completed successfully')
         return jsonData
-    })
+    }
+    catch{
+        console.log('error reading file: ', filename)
+        return[]
+    }
 }
 
 function writeData(filename, data){
     console.log('writeData function called successfully')
     const filepath = path.join(__dirname, filename)
 
-    fs.writeFile(filepath, JSON.stringify(data, null, 2), (e) => {
-        if(e){
-            console.error('error writing to file: ', filename)
-        }
-
-        console.log('writeData function completed successfully')
+    try{
+        fs.writeFileSync(filepath, JSON.stringify(data, null, 2), 'utf8')
+        console.log('writeData functions completed successfully')
         return
-    })
+    }
+    catch{
+        console.log('error trying to write to file: ', filename)
+        return
+    }
 }
 
 function loadRequestTable(data){
     console.log('loadRequestTable function called successfully')
     data.forEach(entry => {
-        console.log(entry.supplierName)
-        tableBody.innerHTML += '<tr><td>${entry.supplierName}</td><td>${entry.service}</td><td>${entry.rating</td></tr>'
-        // const row = document.createElement('tr')
-        // row.innerHTML = ''
-        // tableBody.appendChild(row)
+        tableBody.innerHTML += `
+            <tr>
+                <td>${entry.supplierName}</td>
+                <td>${entry.productOrService}</td>
+                <td>${entry.rating}</td>
+            </tr>
+        `
     })
 
     console.log('loadRequestTable function called successfully')
 }
+
+function updateRequestTable(data){
+    console.log('loadRequestTable function called successfully')
+
+    lastEntry = data[data.length - 1]
+    
+    tableBody.innerHTML += `
+        <tr>
+            <td>${lastEntry.supplierName}</td>
+            <td>${lastEntry.productOrService}</td>
+            <td>${lastEntry.rating}</td>
+        </tr>
+    `
+
+    console.log('loadRequestTable function called successfully')
+}
+
 
 function submitRequestForm(e){
     console.log('submitRequestForm function called successfully')
@@ -107,19 +125,23 @@ function submitRequestForm(e){
     const productOrService = document.querySelector('#productOrService').value.trim()
     const rating = document.querySelector('#rating').value.trim()
 
-    if (!supplierName || !productOrService || isNaN(rating)) return;
+    if (!supplierName || !productOrService || isNaN(rating)){
+        return
+    }
 
     const data = readData('requestData.json')
 
+    console.log(data)
+    
     data.push({
         supplierName,
         productOrService,
         rating
     })
 
-    loadRequestTable(data)
-
     writeData('requestData.json', data)
+    updateRequestTable(readData('requestData.json'))
+    openRequestPage()
 
     console.log('submitRequestForm function completed successfully')
 }
@@ -135,6 +157,10 @@ requestHomeButton.addEventListener('click', openHomePage)
 addRequestEntryButton.addEventListener('click', openAddRequestEntryForm)
 closeRequestEntryFormButton.addEventListener('click', closeAddRequestEntryForm)
 form.addEventListener('submit', submitRequestForm)
+
+document.addEventListener('DOMContentLoaded', () => {
+    loadRequestTable(readData('requestData.json'))
+})
 
 
 

@@ -11,7 +11,7 @@
 </head>
 <body >
     <!-- Home Page---------------------------------------------------------------------------------- -->
-    <div id="HomePage" style="display: none;">
+    <div id="HomePage" style="display: flex;">
         <div class="card" id="homeCard">
             <div id="homeCardHeadingDiv">
                 <h1>Procurement Manager</h1>
@@ -101,7 +101,7 @@
     </div>
 
     <!-- Manage Supplier Request Page-------------------------------------------------------------- -->
-    <div id="RequestPage" style="display: flex;">
+    <div id="RequestPage" style="display: none;">
         <div id="buttonsRibbon">
             <button id="RequestHomeButton" class="button">
                 <img src="./assets/images/home.png" alt="" class="buttonIcons" id="requestHomeIcon">
@@ -125,7 +125,7 @@
         </table>
     </div>
 
-    <form action="" class="card" id="addEntryForm" style="display: none;">
+    <form class="card" id="addEntryForm" style="display: none;">
         <div class="formEntryDiv">
             <label for="supplierName">Supplier Name</label>
             <input type="text" class="inputField" id="supplierName" placeholder="Supplier Name" required>
