@@ -1,5 +1,5 @@
-// const fs = require('fs')
-// const path = require('path')
+const fs = require('fs')
+const path = require('path')
 
 const homePage = document.querySelector('#HomePage')
 const scrapePage = document.querySelector('#ScrapePage')
@@ -44,6 +44,7 @@ function openHomePage(){
 }
 
 function openAddRequestEntryForm(){
+    console.log('form opened successfully')
     requestPage.style.display = 'none'
     form.style.display = 'flex'
 }
@@ -54,20 +55,25 @@ function closeAddRequestEntryForm(){
 }
 
 function readData(filename){
+    console.log('readData function called successfully')
     const filepath = path.join(__dirname, filename)
 
     fs.readFile(filepath, 'utf8', (err, data) => {
         if (err){
+            console.log('error occured while reading file')
             console.error('error reading file:', filename)
+            return
         }
 
         const jsonData = JSON.parse(data)
-
+        
+        console.log('readData function completed successfully')
         return jsonData
     })
 }
 
 function writeData(filename, data){
+    console.log('writeData function called successfully')
     const filepath = path.join(__dirname, filename)
 
     fs.writeFile(filepath, JSON.stringify(data, null, 2), (e) => {
@@ -75,21 +81,26 @@ function writeData(filename, data){
             console.error('error writing to file: ', filename)
         }
 
+        console.log('writeData function completed successfully')
         return
     })
 }
 
 function loadRequestTable(data){
-    tableBody.innerHTML = ''
-
+    console.log('loadRequestTable function called successfully')
     data.forEach(entry => {
-        const row = document.createElement('tr')
-        row.innerHTML = '<td>${entry.supplierName}</td><td>${entry.service}</td><td>${entry.rating</td>'
-        tableBody.appendChild(row)
+        console.log(entry.supplierName)
+        tableBody.innerHTML += '<tr><td>${entry.supplierName}</td><td>${entry.service}</td><td>${entry.rating</td></tr>'
+        // const row = document.createElement('tr')
+        // row.innerHTML = ''
+        // tableBody.appendChild(row)
     })
+
+    console.log('loadRequestTable function called successfully')
 }
 
 function submitRequestForm(e){
+    console.log('submitRequestForm function called successfully')
     e.preventDefault()
 
     const supplierName = document.querySelector('#supplierName').value.trim()
@@ -109,6 +120,8 @@ function submitRequestForm(e){
     loadRequestTable(data)
 
     writeData('requestData.json', data)
+
+    console.log('submitRequestForm function completed successfully')
 }
 
 scrapePageButton.addEventListener('click', openScrapePage)
@@ -121,7 +134,7 @@ requestHomeButton.addEventListener('click', openHomePage)
 
 addRequestEntryButton.addEventListener('click', openAddRequestEntryForm)
 closeRequestEntryFormButton.addEventListener('click', closeAddRequestEntryForm)
-form.addEventListener('submit', submitRequestForm(e))
+form.addEventListener('submit', submitRequestForm)
 
 
 

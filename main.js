@@ -1,5 +1,6 @@
 const {app, BrowserWindow} = require("electron")
 const path = require("path")
+const { contextIsolated } = require("process")
 
 const isMac = process.platform === 'darwin'
 const isDev = process.env.NODE_ENV != 'development'
@@ -9,7 +10,11 @@ function createMainWindow(){
     const mainWindow = new BrowserWindow({
         title: "Image Resizer",
         height: 1080,
-        width: 1920
+        width: 1920,
+        webPreferences: {
+            nodeIntegration: true,
+            contextIsolation: false,
+        }
     })
 
     if(isDev){
