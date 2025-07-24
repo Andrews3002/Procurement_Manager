@@ -23,6 +23,36 @@ body,
     background-color: rgb(140, 245, 240);
 }
 
+td,
+th{
+    padding: 1rem;
+}
+
+td{
+    height: 50px;
+    vertical-align: middle;
+}
+
+tr:nth-of-type(2n){
+    background-color: hsl(0 0% 0%/ 0.2);
+}
+
+tr{
+    width: 100% !important;
+}
+
+.tableContentRows button{
+    height: 30px;
+    width: 100px;
+}
+
+.tableContentRows{
+    overflow-y: scroll;
+    display: block;
+    overflow-y: scroll;
+    height: 70vh;
+}
+
 .card{
     background-color: white;
     border-radius: 15px;
@@ -99,13 +129,7 @@ body,
     width: 30%;
 }
 
-#supplyRequestTable{
-    width: 97%;
-    border-radius: 7px;
-    overflow: hidden;
-    border-collapse: collapse;
-    text-align: left;
-}
+
 
 .tableHeaderRow{
     position: relative;
@@ -113,30 +137,6 @@ body,
     height: 70px;
     text-transform: uppercase;
 }
-
-.tableContentRows{
-    overflow-y: scroll;
-}
-
-.tableContentRows button{
-    height: 30px;
-    width: 100px;
-}
-
-td,
-th{
-    padding: 1rem;
-}
-
-td{
-    height: 50px;
-    vertical-align: middle;
-}
-
-tr:nth-of-type(2n){
-    background-color: hsl(0 0% 0%/ 0.2);
-}
-
 
 #homeCard{
     position: relative;
@@ -261,4 +261,13 @@ tr:nth-of-type(2n){
     gap: 4.5%;
     height: 80%;
     width: 40%;
+}
+
+#supplyRequestTable{
+    width: 97%;
+    border-radius: 7px;
+    overflow: hidden;
+    border-collapse: collapse;
+    text-align: left;
+    display: block;
 }
