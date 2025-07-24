@@ -121,11 +121,10 @@ function submitRequestForm(e){
     console.log('submitRequestForm function called successfully')
     e.preventDefault()
 
-    const supplierName = document.querySelector('#supplierName').value.trim()
-    const productOrService = document.querySelector('#productOrService').value.trim()
-    const rating = document.querySelector('#rating').value.trim()
+    const requestedItem = document.querySelector('#itemRequested').value.trim()
+    const dateRequested = document.querySelector('#dateRequested').value.trim()
 
-    if (!supplierName || !productOrService || isNaN(rating)){
+    if (!requestedItem || !dateRequested){
         return
     }
 
@@ -158,9 +157,9 @@ addRequestEntryButton.addEventListener('click', openAddRequestEntryForm)
 closeRequestEntryFormButton.addEventListener('click', closeAddRequestEntryForm)
 form.addEventListener('submit', submitRequestForm)
 
-document.addEventListener('DOMContentLoaded', () => {
-    loadRequestTable(readData('requestData.json'))
-})
+// document.addEventListener('DOMContentLoaded', () => {
+//     loadRequestTable(readData('requestData.json'))
+// })
 
 
 

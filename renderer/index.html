@@ -11,7 +11,7 @@
 </head>
 <body >
     <!-- Home Page---------------------------------------------------------------------------------- -->
-    <div id="HomePage" style="display: flex;">
+    <div id="HomePage" style="display: none;">
         <div class="card" id="homeCard">
             <div id="homeCardHeadingDiv">
                 <h1>Procurement Manager</h1>
@@ -27,7 +27,7 @@
                 </button>
                 <button class="button" id="RequestPageButton">
                     <img src="./assets/images/request.png" alt="" class="buttonIcons" id="requestButtonIcon">
-                    MANAGE SUPPLY REQUEST DATA
+                    MANAGE ITEM REQUEST DATA
                 </button>
             </div>
         </div>
@@ -101,7 +101,7 @@
     </div>
 
     <!-- Manage Supplier Request Page-------------------------------------------------------------- -->
-    <div id="RequestPage" style="display: none;">
+    <div id="RequestPage" style="display: flex;">
         <div id="buttonsRibbon">
             <button id="RequestHomeButton" class="button">
                 <img src="./assets/images/home.png" alt="" class="buttonIcons" id="requestHomeIcon">
@@ -114,9 +114,11 @@
         <table class="card" id="supplyRequestTable">
             <thead class="tableHeaderRow">
                 <tr>
-                    <th>Supplier Name</th>
-                    <th>Product/Service</th>
-                    <th>Rating</th>
+                    <th>Item Requested</th>
+                    <th>Date (memo for item recieved)</th>
+                    <th>Companies (under consideration)</th>
+                    <th>Company Selected</th>
+                    <th>Remarks</th>
                 </tr>
             </thead>
             <tbody class="tableContentRows">
@@ -127,18 +129,13 @@
 
     <form class="card" id="addEntryForm" style="display: none;">
         <div class="formEntryDiv">
-            <label for="supplierName">Supplier Name</label>
-            <input type="text" class="inputField" id="supplierName" placeholder="Supplier Name" required>
+            <label for="itemRequested">Item Rquested</label>
+            <input type="text" class="inputField" id="itemRequested" placeholder="enter required item" required>
         </div>
 
         <div class="formEntryDiv">
-            <label for="productOrService">Product/Service</label>
-            <input type="text" class="inputField" id="productOrService" placeholder="Product/Service" required>
-        </div>
-        
-        <div class="formEntryDiv">
-            <label for="rating">Rating</label>
-            <input type="number" class="inputField" id="rating" placeholder="Rating" required>
+            <label for="dateRequested">Date (memo for item recieved)</label>
+            <input type="text" class="inputField" id="dateRequested" placeholder="enter the date the item request memo is recieved" required>
         </div>
 
         <button type="submit" class="button" id="entryFormAddButton">SUBMIT</button>

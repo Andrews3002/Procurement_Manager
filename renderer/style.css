@@ -37,6 +37,7 @@ body,
     align-items: center;
     height: 55px;
     width: 60%;
+    border: 1px black solid;
     border-radius: 10px;
     cursor: pointer;
     background-color: rgb(55, 114, 241);
@@ -88,6 +89,34 @@ body,
 
 .tableContentRows{
     vertical-align: top;
+}
+
+table{
+    position: relative;
+    height: 85%;
+    width: 97%;
+    border-collapse: collapse;
+    text-align: left;
+    border-radius: 0px !important;
+    overflow: scroll;
+}
+
+td,
+th{
+    padding: 1rem;
+}
+
+th{
+    text-transform: uppercase;
+    font-size: 1rem;
+}
+
+td{
+    font-size: 0.9;
+}
+
+tr:nth-of-type(2n){
+    background-color: hsl(0 0% 0% / 0.2)
 }
 
 #homeCard{
@@ -204,13 +233,6 @@ body,
     width: 20%;
 }
 
-#supplyRequestTable{
-    position: relative;
-    height: 83%;
-    width: 95%;
-    overflow: hidden;
-    border-collapse: collapse;
-}
 #addEntryForm{
     position: relative;
     display: flex;
