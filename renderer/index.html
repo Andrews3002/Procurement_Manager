@@ -11,7 +11,7 @@
 </head>
 <body >
     <!-- Home Page---------------------------------------------------------------------------------- -->
-    <div id="HomePage" style="display: none;">
+    <div id="HomePage" style="display: flex;">
         <div class="card" id="homeCard">
             <div id="homeCardHeadingDiv">
                 <h1>Procurement Manager</h1>
@@ -101,7 +101,7 @@
     </div>
 
     <!-- Manage Supplier Request Page-------------------------------------------------------------- -->
-    <div id="RequestPage" style="display: flex;">
+    <div id="RequestPage" style="display: none;">
         <div id="buttonsRibbon">
             <button id="RequestHomeButton" class="button">
                 <img src="./assets/images/home.png" alt="" class="buttonIcons" id="requestHomeIcon">
@@ -118,7 +118,6 @@
                     <th>Date (memo for item recieved)</th>
                     <th>Companies (under consideration)</th>
                     <th>Company Selected</th>
-                    <th>Remarks</th>
                 </tr>
             </thead>
             <tbody class="tableContentRows">
@@ -127,20 +126,41 @@
         </table>
     </div>
 
+    <!-- Add entry form for the item request page -->
     <form class="card" id="addEntryForm" style="display: none;">
         <div class="formEntryDiv">
-            <label for="itemRequested">Item Rquested</label>
-            <input type="text" class="inputField" id="itemRequested" placeholder="enter required item" required>
+            <label for="itemRequested">Item Requested</label>
+            <input type="text" class="inputField" id="itemRequested" required>
         </div>
 
-        <div class="formEntryDiv">
-            <label for="dateRequested">Date (memo for item recieved)</label>
-            <input type="text" class="inputField" id="dateRequested" placeholder="enter the date the item request memo is recieved" required>
+        <div class="formEntryDiv" id="dateEntry">
+            <label for="dateInputFields">Date (memo for item recieved)</label>
+            <div class="dateInputFields">
+                <div>
+                    <input type="number" class="inputField" id="dateField" min="1" max="31" required>
+                    <label for="dateField">DD</label>
+                </div>
+
+                <div>
+                    <input type="number" class="inputField" id="monthField" min="1" max="12" required>
+                    <label for="monthField">MM</label>
+                </div>
+
+                <div>
+                    <input type="number" class="inputField" id="yearField" min="1900" required>
+                    <label for="yearField">YYYY</label>
+                </div>
+            </div>
         </div>
 
         <button type="submit" class="button" id="entryFormAddButton">SUBMIT</button>
         <button type="reset" class="button" id="entryFormClearButton">CLEAR</button>
         <button class="button" id="entryFormCancelButton">CANCEL</button>
     </form>
+
+    <!-- View the companies up for consideration and their details -->
+    <div id="possibleCompaniesPage" style="display: none;">
+
+    </div>
 </body>
 </html>

@@ -20,6 +20,8 @@ const closeRequestEntryFormButton = document.querySelector('#entryFormCancelButt
 const tableBody = document.querySelector('#supplyRequestTable tbody')
 const form = document.querySelector('#addEntryForm')
 
+requestedItemID = 0
+
 function openScrapePage(){
     homePage.style.display = 'none'
     scrapePage.style.display = 'flex'
@@ -88,11 +90,24 @@ function writeData(filename, data){
 function loadRequestTable(data){
     console.log('loadRequestTable function called successfully')
     data.forEach(entry => {
+        requestedItemID = requestedItemID + 1
+        entry.requestedItemID = requestedItemID
+
+        const dateObj = new Date(entry.dateRequested.year, entry.dateRequested.month-1, entry.dateRequested.day)
+        const textDate = dateObj.toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        })
+
         tableBody.innerHTML += `
             <tr>
-                <td>${entry.supplierName}</td>
-                <td>${entry.productOrService}</td>
-                <td>${entry.rating}</td>
+                <td>${entry.requestedItem}</td>
+                <td>${textDate}</td>
+                <td>
+                    <button class="button">VIEW</button>
+                </td>
+                <td>${entry.selectedCompany}</td>
             </tr>
         `
     })
@@ -104,12 +119,22 @@ function updateRequestTable(data){
     console.log('loadRequestTable function called successfully')
 
     lastEntry = data[data.length - 1]
-    
+
+    const dateObj = new Date(lastEntry.dateRequested.year, lastEntry.dateRequested.month-1, lastEntry.dateRequested.day)
+    const textDate = dateObj.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    })
+
     tableBody.innerHTML += `
         <tr>
-            <td>${lastEntry.supplierName}</td>
-            <td>${lastEntry.productOrService}</td>
-            <td>${lastEntry.rating}</td>
+            <td>${lastEntry.requestedItem}</td>
+            <td>${textDate}</td>
+            <td>
+                <button class="button">VIEW</button>
+            </td>
+            <td>${lastEntry.selectedCompany}</td>
         </tr>
     `
 
@@ -122,20 +147,35 @@ function submitRequestForm(e){
     e.preventDefault()
 
     const requestedItem = document.querySelector('#itemRequested').value.trim()
-    const dateRequested = document.querySelector('#dateRequested').value.trim()
+    const dateValue = document.querySelector('#dateField').value.trim()
+    const monthValue = document.querySelector('#monthField').value.trim()
+    const yearValue = document.querySelector('#yearField').value.trim()
 
-    if (!requestedItem || !dateRequested){
+    if (!requestedItem || !dateValue || !monthValue || !yearValue){
         return
     }
 
-    const data = readData('requestData.json')
+    console.log(dateValue)
+    console.log(monthValue)
+    console.log(yearValue)
 
-    console.log(data)
+    dateRequested = {
+        "day": dateValue,
+        "month": monthValue,
+        "year": yearValue
+    }
+    requestedItemID = requestedItemID + 1
+    pendingCompanies = []
+    selectedCompany = 'pending'
+
+    const data = readData('requestData.json')
     
     data.push({
-        supplierName,
-        productOrService,
-        rating
+        requestedItemID,
+        requestedItem,
+        dateRequested,
+        pendingCompanies,
+        selectedCompany,
     })
 
     writeData('requestData.json', data)
@@ -157,14 +197,6 @@ addRequestEntryButton.addEventListener('click', openAddRequestEntryForm)
 closeRequestEntryFormButton.addEventListener('click', closeAddRequestEntryForm)
 form.addEventListener('submit', submitRequestForm)
 
-// document.addEventListener('DOMContentLoaded', () => {
-//     loadRequestTable(readData('requestData.json'))
-// })
-
-
-
-
-
-
-
-
+document.addEventListener('DOMContentLoaded', () => {
+    loadRequestTable(readData('requestData.json'))
+})
