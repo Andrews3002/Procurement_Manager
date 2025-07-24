@@ -1,0 +1,20 @@
+x Navigations between pages
+
+- Updating the list of OPR registered companies
+
+- Browsing the list of OPR registered companies
+
+- Adding a list of requested items to a database
+
+- Adding a list of companies being considered under a particular requested items
+
+- Browsing the OPR registered companies to add directly to the selected 
+requested items
+
+- Browing the OPR registered companies for research purposes with an additional 
+option to add a specific company to the consideration list after selecting an 
+item
+
+- Adding a dropdown filter to toggle between different frequent item categories
+(Stationary, PPE, IT equipment)
+
