@@ -27,6 +27,7 @@ body,
     background-color: rgb(140, 245, 240);
 }
 
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------------- */
 table{
     position: relative;
     display: block;
@@ -63,6 +64,7 @@ th{
     vertical-align: middle;
 }
 
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------------- */
 .card{
     background-color: white;
     border-radius: 15px;
@@ -139,6 +141,7 @@ th{
     width: 30%;
 }
 
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------------- */
 #homeCard{
     position: relative;
     display:flex;
@@ -170,6 +173,7 @@ th{
     width: 100%;
 }
 
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------------- */
 #updateDatabasePageMainCard{
     position: relative;
     display: flex;
@@ -181,6 +185,7 @@ th{
     width: 60%;
 }
 
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------------- */
 #browseSuppliersPage{
     justify-content: flex-start;
     gap: 2%;
@@ -274,6 +279,7 @@ th{
     width: 30%;
 }
 
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------------- */
 #supplierDetailsPage{
     justify-content: flex-start;
     gap: 2%;
@@ -316,6 +322,7 @@ th{
     width: 1500px;
 }
 
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------------- */
 #requestedItemsPage{
     position: relative;
     display: flex;
@@ -355,18 +362,6 @@ th{
     font-size: 1rem;
 }
 
-
-#addEntryForm{
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 4.5%;
-    height: 80%;
-    width: 40%;
-}
-
 #requestedItemsPageTable{
     width: 97%;
     height: 85%;
@@ -402,6 +397,19 @@ th{
     place-items: center;
 }
 
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------------- */
+#addEntryForm{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4.5%;
+    height: 80%;
+    width: 40%;
+}
+
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------------- */
 #companyConsiderationPage{
     position: relative;
     display: flex;
@@ -467,6 +475,7 @@ th{
     text-align: center;
 }
 
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------------- */
 #item_browseSuppliersPage{
     justify-content: flex-start;
     gap: 2%;
@@ -492,7 +501,7 @@ th{
     width: 100%;
 }
 
-#item_browseSuppliersPageHomeButton{
+#item_browseSuppliersPageBackButton{
     width: 50%;
     font-size: 1.5rem;
 }
@@ -560,6 +569,7 @@ th{
     width: 30%;
 }
 
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------------- */
 #item_supplierDetailsPage{
     justify-content: flex-start;
     gap: 2%;
@@ -607,4 +617,16 @@ th{
 
 #item_supplierDetailsPageTable td{
     width: 1500px;
+}
+
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------------- */
+#removeItemForm{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: center;
+    height: 50%;
+    width: 50%;
 }

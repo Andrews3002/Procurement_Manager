@@ -279,7 +279,7 @@
     <!-- View the companies up for consideration and their details ------------------------------------------------------->
     <div id="companyConsiderationPage" style="display: none;">
         <div id="companyConsiderationPageNavbar">
-            <a href="javascript:history.back()" id="companyConsiderationPageBackButton" class="button">
+            <a id="companyConsiderationPageBackButton" class="button">
                 <!-- <img src="./assets/images/home.png" alt="" class="buttonIcons" id="requestHomeIcon"> -->
                 BACK
             </a>
@@ -314,9 +314,9 @@
     <div id="item_browseSuppliersPage" style="display: none;">
         <div class="card" id="item_browseSuppliersPageNavbar">
             <div id="item_browseSuppliersPageNavbarLeft">
-                <button id="item_browseSuppliersPageHomeButton" class="button">
+                <button id="item_browseSuppliersPageBackButton" class="button">
                     <!-- <img src="./assets/images/home.png" alt="" class="buttonIcons" id="supplierHomeIcon"> -->
-                    Home
+                    BACK
                 </button>
             </div>
             <div id="item_browseSuppliersPageNavbarMiddle">
@@ -467,5 +467,12 @@
             </tr>
         </table>
     </div>
+
+    <form class="card" id="removeItemForm" style="display: none;">
+        <h1>Are you sure you want to remove this item?</h1>
+
+        <button class="button" id="removeItemButton">Yes</button>
+        <button class="button" id="cancelRemovalOfItemButton">Cancel</button>
+    </form>
 </body>
 </html>
