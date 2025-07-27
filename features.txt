@@ -1,20 +1,28 @@
-x Navigations between pages
+x Navigation between pages
 
-- Updating the list of OPR registered companies
+x Adding a list of requested items to a database
 
-- Browsing the list of OPR registered companies
+- when adding an item to the database have an option to categorize it as one of these:
+(Stationary, PPE, IT equipment, General)
 
-- Adding a list of requested items to a database
+- Updating the list of OPR registered companies(with warframe data for now)
 
-- Adding a list of companies being considered under a particular requested items
+- Browsing the list of OPR registered companies(warframe data for now)
 
-- Browsing the OPR registered companies to add directly to the selected 
-requested items
+- after selecting an item, allow users to add a company from the list of OPR registered companies
+(warframe data for now)
 
-- Browing the OPR registered companies for research purposes with an additional 
-option to add a specific company to the consideration list after selecting an 
-item
+- Browsing the OPR registered companies for research purposes with an additional 
+option to add a specific company to the consideration list after being prompted to select an 
+item(warframe data for now)
+
+- Adding an option in the considered companies to select a company to be the supplier of the item
+(a warframe for now)
 
 - Adding a dropdown filter to toggle between different frequent item categories
-(Stationary, PPE, IT equipment)
+(Stationary, PPE or IT equipment)
+
+
+
+
 
