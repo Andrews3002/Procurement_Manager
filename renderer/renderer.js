@@ -1,69 +1,69 @@
 const fs = require('fs')
 const path = require('path')
 
-const homePage = document.querySelector('#HomePage')
-const scrapePage = document.querySelector('#ScrapePage')
-const supplierPage = document.querySelector('#SupplierPage')
-const requestPage = document.querySelector('#RequestPage')
+const homePage = document.querySelector('#homePage')
+const updateDatabasePage = document.querySelector('#updateDatabasePage')
+const browseSuppliersPage = document.querySelector('#browseSuppliersPage')
+const requestedItemsPage = document.querySelector('#requestedItemsPage')
 
-const scrapePageButton = document.querySelector('#ScrapePageButton')
-const supplierPageButton = document.querySelector('#SupplierPageButton')
-const requestPageButton = document.querySelector('#RequestPageButton')
+const updateDatabasePageButton = document.querySelector('#updateDatabasePageButton')
+const browseSuppliersPageButton = document.querySelector('#browseSuppliersPageButton')
+const requestedItemsPageButton = document.querySelector('#requestedItemsPageButton')
 
-const scrapeHomeButton = document.querySelector('#ScrapeHomeButton')
-const supplierHomeButton = document.querySelector('#SupplierHomeButton')
-const requestHomeButton = document.querySelector('#RequestHomeButton')
+const updateDatabasePageHomeButton = document.querySelector('#updateDatabasePageHomeButton')
+const browseSuppliersPageHomeButton = document.querySelector('#browseSuppliersPageHomeButton')
+const requestedItemsPageHomeButton = document.querySelector('#requestedItemsPageHomeButton')
 
-const addRequestEntryButton = document.querySelector('#RequestAddEntryButton')
-const closeRequestEntryFormButton = document.querySelector('#entryFormCancelButton')
+const requestedItemsPageAddItemButton = document.querySelector('#requestedItemsPageAddItemButton')
+const entryFormCancelButton = document.querySelector('#entryFormCancelButton')
 
-const tableBody = document.querySelector('#supplyRequestTable tbody')
-const form = document.querySelector('#addEntryForm')
+const requestedItemsPageTableTableBody = document.querySelector('#requestedItemsPageTable tbody')
+const addEntryForm = document.querySelector('#addEntryForm')
 
 requestedItemID = 0
 
-function openScrapePage(){
+function openUpdateDatabasePage(){
     homePage.style.display = 'none'
-    scrapePage.style.display = 'flex'
+    updateDatabasePage.style.display = 'flex'
 }
 
-function openSupplierPage(){
+function openBrowseSuppliersPage(){
     homePage.style.display = 'none'
-    supplierPage.style.display = 'flex'
+    browseSuppliersPage.style.display = 'flex'
 }
 
-function openRequestPage(){
-    requestPage.style.display = 'flex'
+function openRequestedItemsPage(){
+    requestedItemsPage.style.display = 'flex'
     homePage.style.display = 'none'
-    form.style.display = 'none'
+    addEntryForm.style.display = 'none'
 }
 
 function openHomePage(){
     homePage.style.display = 'flex'
-    scrapePage.style.display = 'none'
-    supplierPage.style.display = 'none'
-    requestPage.style.display = 'none'
+    updateDatabasePage.style.display = 'none'
+    browseSuppliersPage.style.display = 'none'
+    requestedItemsPage.style.display = 'none'
 }
 
 function openAddRequestEntryForm(){
-    console.log('form opened successfully')
-    requestPage.style.display = 'none'
-    form.style.display = 'flex'
+    console.log('addEntryForm opened successfully')
+    requestedItemsPage.style.display = 'none'
+    addEntryForm.style.display = 'flex'
 }
 
 function closeAddRequestEntryForm(){
-    form.style.display = 'none'
-    requestPage.style.display = 'flex' 
+    addEntryForm.style.display = 'none'
+    requestedItemsPage.style.display = 'flex' 
 }
 
-function readData(filename){
-    console.log('readData function called successfully')
+function readJsonFile(filename){
+    console.log('readJsonFile function called successfully')
     const filepath = path.join(__dirname, filename)
 
     try{   
         const data = fs.readFileSync(filepath, 'utf8')
         const jsonData = JSON.parse(data)
-        console.log('readData function completed successfully')
+        console.log('readJsonFile function completed successfully')
         return jsonData
     }
     catch{
@@ -72,13 +72,13 @@ function readData(filename){
     }
 }
 
-function writeData(filename, data){
-    console.log('writeData function called successfully')
+function writeDataToJsonFile(filename, data){
+    console.log('writeDataToJsonFile function called successfully')
     const filepath = path.join(__dirname, filename)
 
     try{
         fs.writeFileSync(filepath, JSON.stringify(data, null, 2), 'utf8')
-        console.log('writeData functions completed successfully')
+        console.log('writeDataToJsonFile functions completed successfully')
         return
     }
     catch{
@@ -100,7 +100,7 @@ function loadRequestTable(data){
             day: 'numeric'
         })
 
-        tableBody.innerHTML += `
+        requestedItemsPageTableTableBody.innerHTML += `
             <tr>
                 <td>${entry.requestedItem}</td>
                 <td>${textDate}</td>
@@ -127,7 +127,7 @@ function updateRequestTable(data){
         day: 'numeric'
     })
 
-    tableBody.innerHTML += `
+    requestedItemsPageTableTableBody.innerHTML += `
         <tr>
             <td>${lastEntry.requestedItem}</td>
             <td>${textDate}</td>
@@ -140,7 +140,6 @@ function updateRequestTable(data){
 
     console.log('loadRequestTable function called successfully')
 }
-
 
 function submitRequestForm(e){
     console.log('submitRequestForm function called successfully')
@@ -168,7 +167,7 @@ function submitRequestForm(e){
     pendingCompanies = []
     selectedCompany = 'pending'
 
-    const data = readData('requestData.json')
+    const data = readJsonFile('requestData.json')
     
     data.push({
         requestedItemID,
@@ -178,25 +177,25 @@ function submitRequestForm(e){
         selectedCompany,
     })
 
-    writeData('requestData.json', data)
-    updateRequestTable(readData('requestData.json'))
-    openRequestPage()
+    writeDataToJsonFile('requestData.json', data)
+    updateRequestTable(readJsonFile('requestData.json'))
+    openRequestedItemsPage()
 
     console.log('submitRequestForm function completed successfully')
 }
 
-scrapePageButton.addEventListener('click', openScrapePage)
-supplierPageButton.addEventListener('click', openSupplierPage)
-requestPageButton.addEventListener('click', openRequestPage)
+updateDatabasePageButton.addEventListener('click', openUpdateDatabasePage)
+browseSuppliersPageButton.addEventListener('click', openBrowseSuppliersPage)
+requestedItemsPageButton.addEventListener('click', openRequestedItemsPage)
 
-scrapeHomeButton.addEventListener('click', openHomePage)
-supplierHomeButton.addEventListener('click', openHomePage)
-requestHomeButton.addEventListener('click', openHomePage)
+updateDatabasePageHomeButton.addEventListener('click', openHomePage)
+browseSuppliersPageHomeButton.addEventListener('click', openHomePage)
+requestedItemsPageHomeButton.addEventListener('click', openHomePage)
 
-addRequestEntryButton.addEventListener('click', openAddRequestEntryForm)
-closeRequestEntryFormButton.addEventListener('click', closeAddRequestEntryForm)
-form.addEventListener('submit', submitRequestForm)
+requestedItemsPageAddItemButton.addEventListener('click', openAddRequestEntryForm)
+entryFormCancelButton.addEventListener('click', closeAddRequestEntryForm)
+addEntryForm.addEventListener('submit', submitRequestForm)
 
 document.addEventListener('DOMContentLoaded', () => {
-    loadRequestTable(readData('requestData.json'))
+    loadRequestTable(readJsonFile('requestData.json'))
 })
