@@ -1,16 +1,26 @@
 const fs = require('fs')
 const path = require('path')
+const { exec } = require('child_process')
 requestedItemID = 0
 selectedItemID = 0
 
 function readJsonFile(filename){
-    console.log('readJsonFile function called successfully')
     const filepath = path.join(__dirname, filename)
 
     try{   
         const data = fs.readFileSync(filepath, 'utf8')
         const jsonData = JSON.parse(data)
-        console.log('readJsonFile function completed successfully')
+
+        requestedItemID = 0
+        
+        jsonData.forEach(item => {
+            if (requestedItemID < item.requestedItemID){
+                requestedItemID = item.requestedItemID
+            }
+        })
+
+        requestedItemID += 1
+
         return jsonData
     }
     catch{
@@ -20,12 +30,10 @@ function readJsonFile(filename){
 }
 
 function writeDataToJsonFile(filename, data){
-    console.log('writeDataToJsonFile function called successfully')
     const filepath = path.join(__dirname, filename)
 
     try{
         fs.writeFileSync(filepath, JSON.stringify(data, null, 2), 'utf8')
-        console.log('writeDataToJsonFile functions completed successfully')
         return
     }
     catch{
@@ -97,33 +105,7 @@ entryFormCancelButton.addEventListener('click', () => {
 })
 
 //Adding an Item to the requestedItems database---------------------------------------------------------------------------------------
-function updateRequestTable(data){
-    console.log('updateRequestTable function called successfully')
-
-    lastEntry = data[data.length - 1]
-
-    const dateObj = new Date(lastEntry.dateRequested.year, lastEntry.dateRequested.month-1, lastEntry.dateRequested.day)
-    const textDate = dateObj.toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-    })
-
-    requestedItemsPageTableBody.innerHTML += `
-        <tr data-id = "${lastEntry.requestedItemID}">
-            <td>${lastEntry.requestedItem}</td>
-            <td>${textDate}</td>
-            <td>
-                <button class="button">VIEW</button>
-            </td>
-            <td>${lastEntry.selectedCompany}</td>
-        </tr>
-    `
-
-    console.log('updateRequestTable function completed successfully')
-}
 function submitRequestForm(e){
-    console.log('submitRequestForm function called successfully')
     e.preventDefault()
 
     const requestedItem = document.querySelector('#itemRequested').value.trim()
@@ -135,16 +117,11 @@ function submitRequestForm(e){
         return
     }
 
-    console.log(dateValue)
-    console.log(monthValue)
-    console.log(yearValue)
-
     dateRequested = {
         "day": dateValue,
         "month": monthValue,
         "year": yearValue
     }
-    requestedItemID = requestedItemID + 1
     pendingCompanies = []
     selectedCompany = 'pending'
 
@@ -158,11 +135,11 @@ function submitRequestForm(e){
         selectedCompany,
     })
 
-    writeDataToJsonFile('requestData.json', data)
-    updateRequestTable(readJsonFile('requestData.json'))
+    const sortedData = sortItems(data)
+    writeDataToJsonFile('requestData.json', sortedData)
+    loadRequestTable(sortedData)
     addEntryForm.style.display = "none"
     requestedItemsPage.style.display = "flex"
-    console.log('submitRequestForm function completed successfully')
 }
 addEntryForm.addEventListener('submit', submitRequestForm)
 
@@ -258,25 +235,71 @@ removeItemButton.addEventListener('click', (event) => {
     
     const newItems = items.filter(obj => obj.requestedItemID != selectedItemID)
 
-    requestedItemID = 0
+    const sortedData = sortItems(newItems)
+    writeDataToJsonFile("requestData.json", sortedData)
+    loadRequestTable(sortedData)
 
-    newItems.forEach(i => {
-        requestedItemID = requestedItemID + 1
-        i.requestedItemID = requestedItemID
-    })
-
-    writeDataToJsonFile("requestData.json", newItems)
-
-    loadRequestTable(newItems)
     removeItemForm.style.display = "none"
     requestedItemsPage.style.display = "flex"
 })
 
+//Adding dropdown menu sorting functionality to sort the items
+const requestItemsPageSortingDropdownMenu = document.querySelector('#requestItemsPageSortingDropdownMenu')
 
+function sortItems(data){
+    const sortBy = requestItemsPageSortingDropdownMenu.value
 
+    if (sortBy == "createdAsc"){
+        data.sort((a,b) => {
+            return a.requestedItemID - b.requestedItemID
+        })
+    }
+    else if (sortBy == "createdDesc"){
+        data.sort((a,b) => {
+            return b.requestedItemID - a.requestedItemID
+        })
+    }
+    else if (sortBy == "itemNameAsc"){
+        data.sort((a,b) => {
+            return a.requestedItem.localeCompare(b.requestedItem, undefined, {sensitivity : "base"})
+        })
+    }
+    else if (sortBy == "itemNameDesc"){
+        data.sort((a,b) => {
+            return b.requestedItem.localeCompare(a.requestedItem, undefined, {sensitivity : "base"})
+        })
+    }
+    else if (sortBy == "dateAsc"){
+        data.sort((a,b) => {
+            const dateA = new Date(a.dateRequested.year, a.dateRequested.month - 1, a.dateRequested.day)
+            const dateB = new Date(b.dateRequested.year, b.dateRequested.month - 1, b.dateRequested.day)
 
+            return dateA - dateB
+        })
+    }
+     else if (sortBy == "dateDesc"){
+        data.sort((a,b) => {
+            const dateA = new Date(a.dateRequested.year, a.dateRequested.month - 1, a.dateRequested.day)
+            const dateB = new Date(b.dateRequested.year, b.dateRequested.month - 1, b.dateRequested.day)
 
+            return dateB - dateA
+        })
+     }
+    return data
+}
 
+requestItemsPageSortingDropdownMenu.addEventListener('change', () => {
+    const data = sortItems(readJsonFile("requestData.json"))
+    writeDataToJsonFile("requestData.json", data)
+    loadRequestTable(data)
+})
+
+//adding functionality to the button that updates the database by running a python script
+const updateDatabaseButton = document.querySelector('#updateDatabaseButton')
+
+updateDatabaseButton.addEventListener('click', () => {
+    
+})
 
 
 
@@ -285,17 +308,9 @@ removeItemButton.addEventListener('click', (event) => {
 
 // Initialization functions--------------------------------------------------------------------------------------------------------------------
 function loadRequestTable(data){
-    console.log('loadRequestTable function called successfully')
-
     requestedItemsPageTableBody.innerHTML = ''
 
-    requestedItemID = 0
-    selectedItemID = 0
-
     data.forEach(entry => {
-        requestedItemID = requestedItemID + 1
-        entry.requestedItemID = requestedItemID
-
         const dateObj = new Date(entry.dateRequested.year, entry.dateRequested.month-1, entry.dateRequested.day)
         const textDate = dateObj.toLocaleDateString('en-US', {
             year: 'numeric',
@@ -314,10 +329,10 @@ function loadRequestTable(data){
             </tr>
         `
     })
-
-    console.log('loadRequestTable function called successfully')
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    loadRequestTable(readJsonFile('requestData.json'))
+    const data = sortItems(readJsonFile('requestData.json'))
+    writeDataToJsonFile("requestData.json", data)
+    loadRequestTable(data)
 })

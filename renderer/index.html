@@ -11,7 +11,7 @@
 </head>
 <body>
     <!-- Home Page---------------------------------------------------------------------------------- -->
-    <div id="homePage" style="display: flex;">
+    <div id="homePage" style="display: none;">
         <div class="card" id="homeCard">
             <div id="homeCardHeadingDiv">
                 <h1>Procurement Manager</h1>
@@ -208,7 +208,7 @@
     </div>
 
     <!-- Manage Supplier Request Page-------------------------------------------------------------- -->
-    <div id="requestedItemsPage" style="display: none;">
+    <div id="requestedItemsPage" style="display: flex;">
         <div id="requestedItemsPageNavbar">
             <button id="requestedItemsPageHomeButton" class="button">
                 <!-- <img src="./assets/images/home.png" alt="" class="buttonIcons" id="requestHomeIcon"> -->
@@ -222,10 +222,12 @@
             </button>
             <div id="requestedItemsPageSortingContainer">
                 <select name="requestItemsPageSortingDropdownMenu" id="requestItemsPageSortingDropdownMenu" class="button">
-                    <option value="itemNameAsc">Item Name(Asc)</option>
-                    <option value="itemNameDesc">Item Name(Desc)</option>
-                    <option value="dateAsc">Date(Asc)</option>
-                    <option value="dateDesc">Date(Desc)</option>
+                    <option value="createdAsc">Time Created(Oldest)</option>
+                    <option value="createdDesc">Time Created(Newest)</option>
+                    <option value="itemNameAsc">Alphabetical(A-Z)</option>
+                    <option value="itemNameDesc">Alphabetical(Z-A)</option>
+                    <option value="dateAsc">Date(Oldest)</option>
+                    <option value="dateDesc">Date(Newest)</option>
                 </select>
             </div>
         </div>
