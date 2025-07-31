@@ -630,3 +630,14 @@ th{
     height: 50%;
     width: 50%;
 }
+
+#removeCompanyForm{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: center;
+    height: 50%;
+    width: 50%;
+}

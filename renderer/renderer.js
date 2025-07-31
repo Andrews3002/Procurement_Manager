@@ -5,6 +5,7 @@ requestedItemID = 0
 selectedItemID = 0
 selectedSupplierID = ""
 selectedItemSupplierID = ""
+selectedConsideredID = ""
 
 function readJsonFile(filename){
     const filepath = path.join(__dirname, filename)
@@ -158,6 +159,7 @@ requestedItemsPageTableBody.addEventListener('click', (event) => {
         companyConsiderationPage.style.display = 'flex'
         const itemRow = event.target.closest('tr')
         selectedItemID = itemRow.dataset.id
+        loadConsideredSuppliersTable()
         return
     }
 
@@ -512,7 +514,122 @@ item_supplierDetailsPageBackButton.addEventListener('click', () => {
     item_browseSuppliersPage.style.display = "flex"
 })
 
+//Adding the functionality for the user to add a company to be considered-----------------------------------------------------------------------------------------------------------
+const item_supplierDetailsPageConsiderButton = document.querySelector('#item_supplierDetailsPageConsiderButton')
+
+item_supplierDetailsPageConsiderButton.addEventListener('click', () => {
+    const items = readJsonFile("items.json")
+    const suppliers = readJsonFile("suppliers.json")
+
+    let duplicate = false
+
+    const item = items.find(obj => obj.requestedItemID == selectedItemID)
+    const supplier = suppliers.find(obj => obj.supplierNumber == selectedItemSupplierID)
+
+    const consideredCompanies = item.pendingCompanies
+
+    consideredCompanies.forEach(comp => {
+        if (comp.supplierNumber == selectedItemSupplierID){
+            duplicate = true
+            return
+        }
+    })
+
+    if (duplicate){
+        console.log(item.supplierName, " is already under consideration")
+        return
+    }
+    
+    consideredCompanies.push(supplier)
+
+    item.pendingCompanies = consideredCompanies
+
+    const newItems = items.filter(obj => obj.requestedItemID != selectedItemID)
+
+    newItems.push(item)
+
+    writeDataToJsonFile("items.json", sortItems(newItems))    
+    loadConsideredSuppliersTable()
+
+    item_supplierDetailsPage.style.display = "none"
+    item_browseSuppliersPage.style.display = "flex"
+})
+
+//Adding the functionality to select a considered company from the list of companies--------------------------------------------------------------------------------------
+const companyConsiderationPageTableContentRows = document.querySelector('#companyConsiderationPageTableContentRows')
+let selectedConsideredRow = null
+
+companyConsiderationPageTableContentRows.addEventListener('click', (event) => {
+    const row = event.target.closest('tr')
+
+    allRows = companyConsiderationPageTableContentRows.querySelectorAll('tr')
+
+    allRows.forEach(r => {
+        r.style.border = 'none'
+    })
+
+    if(row === selectedConsideredRow){
+        row.style.border = 'none'
+        selectedConsideredRow = null
+        selectedConsideredID = ""
+    }
+    else{
+        row.style.border = '3px blue solid'
+        selectedConsideredRow = row
+        selectedConsideredID = row.dataset.id
+    }
+})
+
+//Adding the functionality to remove a considered company from the list of companies--------------------------------------------------------------------------------------
+const companyConsiderationPageRemoveCompanyButton = document.querySelector('#companyConsiderationPageRemoveCompanyButton')
+const removeCompanyForm = document.querySelector('#removeCompanyForm')
+
+companyConsiderationPageRemoveCompanyButton.addEventListener('click', () => {
+    if (selectedConsideredID == ""){
+        return
+    }
+
+    companyConsiderationPage.style.display = "none"
+    removeCompanyForm.style.display = "flex"
+})
+
+// const cancelRemovalOfCompanyButton = document.querySelector('#cancelRemovalOfCompanyButton')
+
+// cancelRemovalOfCompanyButton.addEventListener('click', () => {
+//     removeCompanyForm.style.display = "none"
+//     companyConsiderationPage.style.display = "flex"
+// })
+
 // Initialization functions--------------------------------------------------------------------------------------------------------------------
+
+function loadConsideredSuppliersTable(){
+    if (selectedItemID == 0){
+        return
+    }
+
+    companyConsiderationPageTableContentRows.innerHTML = ``
+
+    const items = readJsonFile("items.json")
+
+    item = items.find(obj => obj.requestedItemID == selectedItemID)
+
+    consideredCompanies = item.pendingCompanies
+
+    if (consideredCompanies != []){
+        consideredCompanies.forEach(comp => {
+            companyConsiderationPageTableContentRows.innerHTML += `
+                <tr data-id = "${comp.supplierNumber}">
+                    <td>${comp.supplierName}</td>
+                    <td>${comp.telephone}</td>
+                    <td>${comp.websiteAddress}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td
+                </tr>
+            `
+        })   
+    } 
+}
 
 function loadItemSuppliersTable(data){
     item_browseSuppliersPageTableContentRows.innerHTML = ''
