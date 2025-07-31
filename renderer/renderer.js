@@ -298,7 +298,7 @@ requestItemsPageSortingDropdownMenu.addEventListener('change', () => {
 const updateDatabaseButton = document.querySelector('#updateDatabaseButton')
 
 updateDatabaseButton.addEventListener('click', () => {
-    
+
 })
 
 
@@ -307,6 +307,26 @@ updateDatabaseButton.addEventListener('click', () => {
 
 
 // Initialization functions--------------------------------------------------------------------------------------------------------------------
+
+
+function loadSuppliersTable(data){
+    browseSuppliersPageTableContentRows.innerHTML = ''
+
+    if (data != []){
+        data.forEach(entry => {
+            browseSuppliersPageTableContentRows.innerHTML += `
+                <tr data-id = "${entry.supplierNumber}">
+                    <td>${entry.supplierName}</td>
+                    <td>${entry.status}</td>
+                    <td>${entry.telephone}</td>
+                    <td>${entry.websiteAddress}</td>
+                </tr>
+            `
+        })
+    }
+
+}
+
 function loadRequestTable(data){
     requestedItemsPageTableBody.innerHTML = ''
 
@@ -332,7 +352,9 @@ function loadRequestTable(data){
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    const data = sortItems(readJsonFile('requestData.json'))
-    writeDataToJsonFile("requestData.json", data)
-    loadRequestTable(data)
+    const suppliers = readJsonFile('suppliers.json')
+    loadSuppliersTable(suppliers)
+    const items = sortItems(readJsonFile('requestData.json'))
+    writeDataToJsonFile("requestData.json", items)
+    loadRequestTable(items)
 })
