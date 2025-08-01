@@ -187,6 +187,11 @@ requestedItemsPageTableBody.addEventListener('click', (event) => {
 const companyConsiderationPageBackButton = document.querySelector('#companyConsiderationPageBackButton')
 
 companyConsiderationPageBackButton.addEventListener('click', () => {
+    const items = readJsonFile('items.json')
+    const sortedItems = sortItems(items)
+
+    loadRequestTable(sortedItems)
+
     requestedItemsPage.style.display = 'flex'
     companyConsiderationPage.style.display = 'none'
     selectedItemID = 0
@@ -593,12 +598,35 @@ companyConsiderationPageRemoveCompanyButton.addEventListener('click', () => {
     removeCompanyForm.style.display = "flex"
 })
 
-// const cancelRemovalOfCompanyButton = document.querySelector('#cancelRemovalOfCompanyButton')
+const cancelRemovalOfCompanyButton = document.querySelector('#cancelRemovalOfCompanyButton')
 
-// cancelRemovalOfCompanyButton.addEventListener('click', () => {
-//     removeCompanyForm.style.display = "none"
-//     companyConsiderationPage.style.display = "flex"
-// })
+cancelRemovalOfCompanyButton.addEventListener('click', (e) => {
+    e.preventDefault()
+    removeCompanyForm.style.display = "none"
+    companyConsiderationPage.style.display = "flex"
+})
+
+const removeCompanyButton = document.querySelector('#removeCompanyButton')
+
+removeCompanyButton.addEventListener('click', (e) => {
+    e.preventDefault()
+
+    const items = readJsonFile('items.json')
+    const item = items.find(obj => obj.requestedItemID == selectedItemID)
+    const consideredCompanies = item.pendingCompanies.filter(obj => obj.supplierNumber != selectedConsideredID)
+
+    item.pendingCompanies = consideredCompanies
+    const newItems = items.filter(obj => obj.requestedItemID != selectedItemID)
+    newItems.push(item)
+
+    const sortedNewItems = sortItems(newItems)
+    writeDataToJsonFile('items.json', sortedNewItems)
+
+    loadConsideredSuppliersTable()
+
+    removeCompanyForm.style.display = "none"
+    companyConsiderationPage.style.display = "flex"
+})
 
 // Initialization functions--------------------------------------------------------------------------------------------------------------------
 
