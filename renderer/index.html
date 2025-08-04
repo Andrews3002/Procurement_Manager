@@ -60,7 +60,11 @@
                 </button>
             </div>
             <div id="browseSuppliersPageNavbarMiddle">
-                <input type="Search" class="inputField" id="browseSuppliersPageSearchbar">
+                <div id="searchContainer">
+                    <input type="Search" class="inputField" id="searchBox">
+                    <div id="results">
+                    </div>
+                </div>
                 <button id="browseSuppliersPageSearchButton" class="button">
                     SEARCH
                 </button>
@@ -291,8 +295,11 @@
             <button id="companyConsiderationPageRemoveCompanyButton" class="button">
                 REMOVE COMPANY
             </button>
-            <button id="companyConsiderationPageSelectCompanyButton" class="button">
+            <button id="companyConsiderationPageSelectCompanyButton" class="button" style="display: flex;">
                 SELECT COMPANY
+            </button>
+            <button id="companyConsiderationPageUnselectCompanyButton" class="button" style="display: none;">
+                UNSELECT COMPANY
             </button>
         </div>
         <table class="card" id="companyConsiderationPageTable">

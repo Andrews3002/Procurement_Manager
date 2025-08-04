@@ -6,6 +6,7 @@ selectedItemID = 0
 selectedSupplierID = ""
 selectedItemSupplierID = ""
 selectedConsideredID = ""
+chosenCompanyIDpairs = []
 
 function readJsonFile(filename){
     const filepath = path.join(__dirname, filename)
@@ -126,7 +127,8 @@ function submitRequestForm(e){
         "year": yearValue
     }
     pendingCompanies = []
-    selectedCompany = 'pending'
+    chosenCompany = 'pending'
+    chosenCompanyID = ""
 
     const data = readJsonFile('items.json')
     
@@ -135,7 +137,8 @@ function submitRequestForm(e){
         requestedItem,
         dateRequested,
         pendingCompanies,
-        selectedCompany,
+        chosenCompany,
+        chosenCompanyID,
     })
 
     const sortedData = sortItems(data)
@@ -559,6 +562,7 @@ item_supplierDetailsPageConsiderButton.addEventListener('click', () => {
 
 //Adding the functionality to select a considered company from the list of companies--------------------------------------------------------------------------------------
 const companyConsiderationPageTableContentRows = document.querySelector('#companyConsiderationPageTableContentRows')
+const companyConsiderationPageUnselectCompanyButton = document.querySelector('#companyConsiderationPageUnselectCompanyButton')
 let selectedConsideredRow = null
 
 companyConsiderationPageTableContentRows.addEventListener('click', (event) => {
@@ -576,11 +580,25 @@ companyConsiderationPageTableContentRows.addEventListener('click', (event) => {
         row.style.border = 'none'
         selectedConsideredRow = null
         selectedConsideredID = ""
+        companyConsiderationPageUnselectCompanyButton.style.display = "none"
+        companyConsiderationPageSelectCompanyButton.style.display = "flex"
     }
     else{
         row.style.border = '3px blue solid'
         selectedConsideredRow = row
         selectedConsideredID = row.dataset.id
+
+        const items = readJsonFile("items.json")
+        const item = items.find(obj => obj.requestedItemID == selectedItemID)
+
+        if (row.dataset.id == item.chosenCompanyID){
+            companyConsiderationPageSelectCompanyButton.style.display = "none"
+            companyConsiderationPageUnselectCompanyButton.style.display = "flex"
+        }
+        else{
+            companyConsiderationPageUnselectCompanyButton.style.display = "none"
+            companyConsiderationPageSelectCompanyButton.style.display = "flex"
+        }
     }
 })
 
@@ -635,10 +653,90 @@ removeCompanyButton.addEventListener('click', (e) => {
 // Selecting the winning considered company------------------------------------------------------------------------------------------------------------------------
 const companyConsiderationPageSelectCompanyButton = document.querySelector('#companyConsiderationPageSelectCompanyButton')
 
-// companyConsiderationPageSelectCompanyButton.addEventListener('click', () => {
+companyConsiderationPageSelectCompanyButton.addEventListener('click', () => {
+    if (selectedConsideredID == ""){
+        return
+    }
 
-// })
+    const items = readJsonFile("items.json")
 
+    const otherItems = items.filter(obj => obj.requestedItemID != selectedItemID)
+
+    const item = items.find(obj => obj.requestedItemID == selectedItemID)
+
+    const selectedCompany = item.pendingCompanies.find(obj => obj.supplierNumber == selectedConsideredID)
+
+    item.chosenCompany = selectedCompany.supplierName
+    item.chosenCompanyID = selectedCompany.supplierNumber
+
+    companyConsiderationPageSelectCompanyButton.style.display = "none"
+    companyConsiderationPageUnselectCompanyButton.style.display = "flex"
+
+    otherItems.push(item)
+
+    const sortedItems = sortItems(otherItems)
+
+    writeDataToJsonFile("items.json", otherItems)
+
+    loadRequestTable(sortedItems)
+
+    const allRows = companyConsiderationPageTableContentRows.querySelectorAll('tr')
+
+    let num = 0
+    allRows.forEach(row => {
+        num+=1
+
+        if (num%2 == 0){
+            row.style.background = "hsl(0 0% 0%/ 0.2)"
+        }
+        else{
+            row.style.background = "white"
+        }
+
+        if (row.dataset.id == selectedConsideredID){
+            row.style.background = "hsl(93, 92%, 54%)"
+        }
+    })
+
+    loadConsideredSuppliersTable()
+})
+
+//Unselecting the winning considered company-----------------------------------------------------------------------------------------------------------------------
+companyConsiderationPageUnselectCompanyButton.addEventListener('click', () => {
+    const items = readJsonFile("items.json")
+    const otherItems = items.filter(obj => obj.requestedItem != selectedItemID)
+    const item = items.find(obj => obj.requestedItemID == selectedItemID)
+
+    item.chosenCompany = "pending"
+    item.chosenCompanyID = ""
+
+    const allRows = companyConsiderationPageTableContentRows.querySelectorAll('tr')
+
+    let num = 0
+    allRows.forEach(row => {
+        num+=1
+
+        if (num%2 == 0){
+            row.style.background = "hsl(0 0% 0%/ 0.2)"
+        }
+        else{
+            row.style.background = "white"
+        }
+    })
+
+    otherItems.push(item)
+
+    const sortedItems = sortItems(otherItems)
+
+    companyConsiderationPageUnselectCompanyButton.style.display = "none"
+    companyConsiderationPageSelectCompanyButton.style.display = "flex"
+
+    writeDataToJsonFile("items.json", otherItems)
+
+    loadRequestTable(sortedItems)
+
+    loadConsideredSuppliersTable()    
+})
 
 // Initialization functions--------------------------------------------------------------------------------------------------------------------
 
@@ -669,6 +767,24 @@ function loadConsideredSuppliersTable(){
             `
         })   
     }
+
+    const allRows = companyConsiderationPageTableContentRows.querySelectorAll('tr')
+
+    let num = 0
+    allRows.forEach(row => {
+        num+=1
+
+        if (num%2 == 0){
+            row.style.background = "hsl(0 0% 0%/ 0.2)"
+        }
+        else{
+            row.style.background = "white"
+        }
+
+        if (row.dataset.id == item.chosenCompanyID){
+            row.style.background = "hsl(93, 92%, 54%)"
+        }
+    })
 
     const inputs = companyConsiderationPageTableContentRows.querySelectorAll(".inputArea")
 
@@ -767,7 +883,7 @@ function loadRequestTable(data){
                 <td>
                     <button class="button">VIEW</button>
                 </td>
-                <td>${entry.selectedCompany}</td>
+                <td>${entry.chosenCompany}</td>
             </tr>
         `
     })
