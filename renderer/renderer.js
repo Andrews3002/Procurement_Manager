@@ -401,9 +401,6 @@ browseSuppliersPageDetailsButton.addEventListener('click', () => {
     supplierDetailsPageCreatedTimestamp.innerText = supplier.createdTimestamp
 })
 
-//Adding search functionality for the browse suppliers page----------------------------------------------------------------------------------------------------
-
-
 //Going back to browsesupplierpage from supplierdetails page----------------------------------------------------------------------------------------------------
 const supplierDetailsPageBackButton = document.querySelector('#supplierDetailsPageBackButton')
 
@@ -567,7 +564,9 @@ let selectedConsideredRow = null
 companyConsiderationPageTableContentRows.addEventListener('click', (event) => {
     const row = event.target.closest('tr')
 
-    allRows = companyConsiderationPageTableContentRows.querySelectorAll('tr')
+    const allRows = companyConsiderationPageTableContentRows.querySelectorAll('tr')
+
+    inputAreas = row.querySelectorAll(".inputArea")
 
     allRows.forEach(r => {
         r.style.border = 'none'
@@ -611,6 +610,11 @@ const removeCompanyButton = document.querySelector('#removeCompanyButton')
 removeCompanyButton.addEventListener('click', (e) => {
     e.preventDefault()
 
+    inputAreas.forEach(input => {
+        input.value=""
+        localStorage.removeItem(input.id)
+    })
+
     const items = readJsonFile('items.json')
     const item = items.find(obj => obj.requestedItemID == selectedItemID)
     const consideredCompanies = item.pendingCompanies.filter(obj => obj.supplierNumber != selectedConsideredID)
@@ -627,6 +631,14 @@ removeCompanyButton.addEventListener('click', (e) => {
     removeCompanyForm.style.display = "none"
     companyConsiderationPage.style.display = "flex"
 })
+
+// Selecting the winning considered company------------------------------------------------------------------------------------------------------------------------
+const companyConsiderationPageSelectCompanyButton = document.querySelector('#companyConsiderationPageSelectCompanyButton')
+
+// companyConsiderationPageSelectCompanyButton.addEventListener('click', () => {
+
+// })
+
 
 // Initialization functions--------------------------------------------------------------------------------------------------------------------
 
@@ -650,13 +662,55 @@ function loadConsideredSuppliersTable(){
                     <td>${comp.supplierName}</td>
                     <td>${comp.telephone}</td>
                     <td>${comp.websiteAddress}</td>
-                    <td></td>
-                    <td></td>
-                    <td></td
+                    <td><textarea type="text" id="receivedResponse${comp.supplierNumber}${selectedItemID}" class="inputArea textArea"></textarea></td>
+                    <td><input type="text"  id="amount${comp.supplierNumber}${selectedItemID}" class="inputArea currency"></td>
+                    <td><textarea type="text" id="remarks${comp.supplierNumber}${selectedItemID}" class="inputArea textArea"></textarea></td
                 </tr>
             `
         })   
-    } 
+    }
+
+    const inputs = companyConsiderationPageTableContentRows.querySelectorAll(".inputArea")
+
+    // Ensuring any changes made to the considered companies input fields are saved
+    inputs.forEach(input => {
+        const savedValue = localStorage.getItem(input.id)
+        if (savedValue){
+            input.value = savedValue
+        }
+
+        input.addEventListener("input", () => {
+            localStorage.setItem(input.id, input.value)
+        })
+    })
+
+    const currencyInputs = companyConsiderationPageTableContentRows.querySelectorAll(".currency")
+
+    currencyInputs.forEach(input => {
+        const savedValue = localStorage.getItem(input.id)
+        if (!savedValue){
+            input.value = "$"
+        }
+
+        input.addEventListener("blur", () => {
+            let rawDigits = input.value.replace(/[^0-9.]/g, "")
+
+            if (rawDigits){
+                let number = parseFloat(rawDigits)
+
+                if (!isNaN(number)) {
+                    let formatted = number.toLocaleString("en-US", {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                    })
+                    input.value = "$" + formatted;
+                }
+            }
+            else{
+                input.value = "$"
+            }
+        })
+    })
 }
 
 function loadItemSuppliersTable(data){

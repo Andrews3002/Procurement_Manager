@@ -102,6 +102,21 @@ th{
     padding-left: 2%;
 }
 
+.inputArea{
+    border-radius: 10px;
+    height: 100%;
+    width: 100%;
+    padding-left: 2%;
+}
+
+.textArea{
+    padding: 2%;
+    border: 2px black solid;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
 .dropdownMenu{
     position: relative;
     display: flex;
@@ -471,8 +486,16 @@ th{
 }
 
 #companyConsiderationPageTableContentRows tr td:nth-child(2),
-#companyConsiderationPageTableContentRows tr td:nth-child(4){
+#companyConsiderationPageTableContentRows tr td:nth-child(4),
+#companyConsiderationPageTableContentRows tr td:nth-child(5),
+#companyConsiderationPageTableContentRows tr td:nth-child(6){
     text-align: center;
+}
+
+#companyConsiderationPageTableContentRows tr td:nth-child(4),
+#companyConsiderationPageTableContentRows tr td:nth-child(5),
+#companyConsiderationPageTableContentRows tr td:nth-child(6){
+    padding: 5px;
 }
 
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------------- */

@@ -19,3 +19,7 @@
 })
 
 >npm i electron
+
+- add functionality to the select company option
+- add search functionality to the browse suppliers package
+- add search functionality to the add company page
