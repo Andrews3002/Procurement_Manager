@@ -738,6 +738,145 @@ companyConsiderationPageUnselectCompanyButton.addEventListener('click', () => {
     loadConsideredSuppliersTable()    
 })
 
+//Searching on the browseSuppliers Page-----------------------------------------------------------------------------------------------------------------------------------
+const Fuse = require("fuse.js")
+
+const suppliers = readJsonFile("suppliers.json")
+
+const searchBox = document.querySelector("#searchBox")
+const resultsBox = document.querySelector("#results")
+
+searchBox.addEventListener("input", () => {
+    const query = searchBox.value.toLowerCase().trim()
+    resultsBox.innerHTML = ""
+
+    if (query.length === 0) {
+        resultsBox.style.display = "none"
+        loadSuppliersTable(suppliers)
+        return
+    }
+
+    // const matches = suppliers.filter(s =>
+    //     s.supplierName.toLowerCase().includes(query) ||
+    //     s.status.toLowerCase().includes(query) ||
+    //     s.supplierNumber.toLowerCase().includes(query) ||
+    //     s.services.toLowerCase().includes(query) ||
+    //     s.streetAddress1.toLowerCase().includes(query) ||
+    //     s.streetAddress2.toLowerCase().includes(query) ||
+    //     s.streetAddress3.toLowerCase().includes(query) ||
+    //     s.city.toLowerCase().includes(query)
+    // )
+
+    const options = {
+        keys: ["supplierName","status","supplierNumber","services","streetAddress1","streetAddress2","streetAddress3","city"],
+        threshold: 0.3
+    }
+
+    const fuse = new Fuse(suppliers, options);
+
+    const results = fuse.search(query);
+
+    const matches = results.map(r => r.item)
+
+    if (matches.length > 0) {
+        matches.forEach(match => {
+            const div = document.createElement("div")
+
+            // Find which field matched and show that value
+            const fields = ["supplierName","status","supplierNumber","services","streetAddress1","streetAddress2","streetAddress3","city"];
+
+            let suggestion = "";
+            for (let field of fields) {
+                if (match[field] && match[field].toLowerCase().includes(query)) {
+                    suggestion = match[field]; 
+                    break;
+                }
+            }
+
+            div.textContent = suggestion || match.supplierName;
+
+            div.style.cursor = "pointer"
+
+            div.addEventListener("click", () => {
+                searchBox.value = div.textContent
+                resultsBox.style.display = "none"
+            })
+
+            resultsBox.appendChild(div);
+        })
+
+        resultsBox.style.display = "block";
+    } 
+    else {
+        resultsBox.style.display = "none";
+    }
+
+    loadSuppliersTable(matches)
+})
+
+document.addEventListener("click", (e) => {
+    if (!e.target.closest("#searchContainer")) {
+        resultsBox.style.display = "none"
+    }
+})
+
+//Searching on the browseSuppliers Page-----------------------------------------------------------------------------------------------------------------------------------
+const item_suppliers = readJsonFile("suppliers.json")
+
+const item_searchBox = document.querySelector("#item_searchBox")
+const item_resultsBox = document.querySelector("#item_results")
+
+item_searchBox.addEventListener("input", () => {
+    const query = item_searchBox.value.toLowerCase().trim()
+    item_resultsBox.innerHTML = ""
+
+    if (query.length === 0) {
+        item_resultsBox.style.display = "none"
+        loadItemSuppliersTable(item_suppliers)
+        return
+    }
+
+    const matches = item_suppliers.filter(s =>
+        s.supplierName.toLowerCase().includes(query) ||
+        s.status.toLowerCase().includes(query) ||
+        s.supplierNumber.toLowerCase().includes(query) ||
+        s.services.toLowerCase().includes(query) ||
+        s.streetAddress1.toLowerCase().includes(query) ||
+        s.streetAddress2.toLowerCase().includes(query) ||
+        s.streetAddress3.toLowerCase().includes(query) ||
+        s.city.toLowerCase().includes(query)
+    )
+
+    if (matches.length > 0) {
+        matches.forEach(match => {
+            const div = document.createElement("div")
+
+            div.textContent = match.supplierName
+            div.style.cursor = "pointer"
+
+            div.addEventListener("click", () => {
+                item_searchBox.value = match.supplierName
+                item_resultsBox.style.display = "none"
+            })
+
+            item_resultsBox.appendChild(div);
+        })
+
+        item_resultsBox.style.display = "block";
+    } 
+    else {
+        item_resultsBox.style.display = "none";
+    }
+
+    loadItemSuppliersTable(matches)
+})
+
+document.addEventListener("click", (e) => {
+    if (!e.target.closest("#item_searchContainer")) {
+        item_resultsBox.style.display = "none"
+    }
+})
+
 // Initialization functions--------------------------------------------------------------------------------------------------------------------
 
 function loadConsideredSuppliersTable(){
