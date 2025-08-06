@@ -11,7 +11,7 @@
 </head>
 <body>
     <!-- Home Page---------------------------------------------------------------------------------- -->
-    <div id="homePage" style="display: flex;">
+    <div id="homePage" style="display: none;">
         <div class="card" id="homeCard">
             <div id="homeCardHeadingDiv">
                 <h1>Procurement Manager</h1>
@@ -19,34 +19,33 @@
             <div id="homeCardContentDiv">
                 <button class="button" id="updateDatabasePageButton">
                     <!-- <img class="buttonIcons" id="scrapeButtonIcon" src="./assets/images/update.png" alt=""> -->
-                    UPDATE SUPPLIER DATABASE
+                    Update Supplier Database
                 </button>
                 <button class="button" id="browseSuppliersPageButton">
                     <!-- <img src="./assets/images/browse.png" alt="" class="buttonIcons" id="supplierButtonIcon"> -->
-                    BROWSE SUPPLIERS
+                    Browse Supplier Database
                 </button>
                 <button class="button" id="requestedItemsPageButton">
                     <!-- <img src="./assets/images/request.png" alt="" class="buttonIcons" id="requestButtonIcon"> -->
-                    MANAGE ITEM REQUEST DATA
+                    Manage Item Request Data
                 </button>
             </div>
         </div>
     </div>
 
     <!-- Update Database Page----------------------------------------------------------------------- -->
-    <div id="updateDatabasePage" style="display: none;">
+    <div id="updateDatabasePage" style="display: flex;">
         <div class="card" id="updateDatabasePageMainCard">
             <h1>Enter OPR Login Information</h1>
             <input type="text" class="inputField" id="oprEmail" placeholder="Email">
             <input type="text" class="inputField" id="oprPassword" placeholder="Password">
             <button class="button" id="updateDatabaseButton">
                 <!-- <img src="./assets/images/update.png" alt="" class="buttonIcons" id="scrapeActionButtonIcon"> -->
-                UPDATE DATABASE
+                Update Database
             </button>
-            <button id="updateDatabasePageHomeButton" class="button">
-                <!-- <img src="./assets/images/home.png" alt="" class="buttonIcons" id="updateDatabasePageHomeButton"> -->
-                HOME
-            </button>
+            <div id="updateDatabasePageHomeButton">
+                <img src="./assets/images/back.png" alt="" class="buttonIcons">
+            </div>
         </div>
     </div>
 
@@ -213,10 +212,10 @@
                 Home
             </button>
             <button id="requestedItemsPageAddItemButton" class="button">
-                ADD ITEM
+                Add item
             </button>
             <button id="requestedItemsPageRemoveItemButton" class="button">
-                REMOVE ITEM
+                Remove item
             </button>
             <div id="requestedItemsPageSortingContainer">
                 <select name="requestItemsPageSortingDropdownMenu" id="requestItemsPageSortingDropdownMenu" class="button">
@@ -271,9 +270,9 @@
             </div>
         </div>
 
-        <button type="submit" class="button" id="entryFormAddButton">SUBMIT</button>
-        <button type="reset" class="button" id="entryFormClearButton">CLEAR</button>
-        <button class="button" id="entryFormCancelButton">CANCEL</button>
+        <button type="submit" class="button" id="entryFormAddButton">Submit</button>
+        <button type="reset" class="button" id="entryFormClearButton">Clear</button>
+        <button class="button" id="entryFormCancelButton">Cancel</button>
     </form>
 
     <!-- View the companies up for consideration and their details ------------------------------------------------------->
@@ -319,7 +318,7 @@
             <div id="item_browseSuppliersPageNavbarLeft">
                 <button id="item_browseSuppliersPageBackButton" class="button">
                     <!-- <img src="./assets/images/home.png" alt="" class="buttonIcons" id="supplierHomeIcon"> -->
-                    BACK
+                    Back
                 </button>
             </div>
             <div id="item_browseSuppliersPageNavbarMiddle">

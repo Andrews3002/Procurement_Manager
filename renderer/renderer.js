@@ -769,7 +769,7 @@ searchBox.addEventListener("input", () => {
 
     const options = {
         keys: ["supplierName","status","supplierNumber","services","streetAddress1","streetAddress2","streetAddress3","city"],
-        threshold: 0.3
+        threshold: 0
     }
 
     const fuse = new Fuse(suppliers, options);
@@ -782,18 +782,33 @@ searchBox.addEventListener("input", () => {
         matches.forEach(match => {
             const div = document.createElement("div")
 
-            // Find which field matched and show that value
-            const fields = ["supplierName","status","supplierNumber","services","streetAddress1","streetAddress2","streetAddress3","city"];
+            div.style.display = "flex"
+            div.style.justifyContent = "flex-start"
+            div.style.alignItems = "center"
+            div.style.width = "100%"
+            div.style.padding = "2% 0% 2% 1%"
 
-            let suggestion = "";
+            // Find which field matched and show that value
+            const fields = [
+                "supplierName",
+                "status",
+                "supplierNumber",
+                "services",
+                "streetAddress1",
+                "streetAddress2",
+                "streetAddress3",
+                "city"
+            ]
+
+            let suggestion = ""
             for (let field of fields) {
                 if (match[field] && match[field].toLowerCase().includes(query)) {
-                    suggestion = match[field]; 
-                    break;
+                    suggestion = match[field]
+                    break
                 }
             }
 
-            div.textContent = suggestion || match.supplierName;
+            div.textContent = suggestion || match.supplierName
 
             div.style.cursor = "pointer"
 
@@ -802,13 +817,21 @@ searchBox.addEventListener("input", () => {
                 resultsBox.style.display = "none"
             })
 
+            div.addEventListener("mouseover", () => {
+                div.style.background = "rgb(55, 114, 241)"
+            })
+
+            div.addEventListener("mouseout", () => {
+                div.style.background = "white"
+            })
+
             resultsBox.appendChild(div);
         })
 
-        resultsBox.style.display = "block";
+        resultsBox.style.display = "flex"
     } 
     else {
-        resultsBox.style.display = "none";
+        resultsBox.style.display = "none"
     }
 
     loadSuppliersTable(matches)
@@ -836,36 +859,82 @@ item_searchBox.addEventListener("input", () => {
         return
     }
 
-    const matches = item_suppliers.filter(s =>
-        s.supplierName.toLowerCase().includes(query) ||
-        s.status.toLowerCase().includes(query) ||
-        s.supplierNumber.toLowerCase().includes(query) ||
-        s.services.toLowerCase().includes(query) ||
-        s.streetAddress1.toLowerCase().includes(query) ||
-        s.streetAddress2.toLowerCase().includes(query) ||
-        s.streetAddress3.toLowerCase().includes(query) ||
-        s.city.toLowerCase().includes(query)
-    )
+    // const matches = item_suppliers.filter(s =>
+    //     s.supplierName.toLowerCase().includes(query) ||
+    //     s.status.toLowerCase().includes(query) ||
+    //     s.supplierNumber.toLowerCase().includes(query) ||
+    //     s.services.toLowerCase().includes(query) ||
+    //     s.streetAddress1.toLowerCase().includes(query) ||
+    //     s.streetAddress2.toLowerCase().includes(query) ||
+    //     s.streetAddress3.toLowerCase().includes(query) ||
+    //     s.city.toLowerCase().includes(query)
+    // )
+
+    const options = {
+        keys: ["supplierName","status","supplierNumber","services","streetAddress1","streetAddress2","streetAddress3","city"],
+        threshold: 0
+    }
+
+    const fuse = new Fuse(suppliers, options);
+
+    const results = fuse.search(query);
+
+    const matches = results.map(r => r.item)
 
     if (matches.length > 0) {
         matches.forEach(match => {
             const div = document.createElement("div")
 
-            div.textContent = match.supplierName
+            div.style.display = "flex"
+            div.style.justifyContent = "flex-start"
+            div.style.alignItems = "center"
+            div.style.width = "100%"
+            div.style.padding = "2% 0% 2% 1%"
+
+            // Find which field matched and show that value
+            const fields = [
+                "supplierName",
+                "status",
+                "supplierNumber",
+                "services",
+                "streetAddress1",
+                "streetAddress2",
+                "streetAddress3",
+                "city"
+            ]
+
+            let suggestion = ""
+            for (let field of fields) {
+                if (match[field] && match[field].toLowerCase().includes(query)) {
+                    suggestion = match[field]
+                    break
+                }
+            }
+
+            div.textContent = suggestion || match.supplierName
+
             div.style.cursor = "pointer"
 
             div.addEventListener("click", () => {
-                item_searchBox.value = match.supplierName
+                item_searchBox.value = div.textContent
                 item_resultsBox.style.display = "none"
             })
 
-            item_resultsBox.appendChild(div);
+            div.addEventListener("mouseover", () => {
+                div.style.background = "rgb(55, 114, 241)"
+            })
+
+            div.addEventListener("mouseout", () => {
+                div.style.background = "white"
+            })
+
+            item_resultsBox.appendChild(div)
         })
 
-        item_resultsBox.style.display = "block";
+        item_resultsBox.style.display = "block"
     } 
     else {
-        item_resultsBox.style.display = "none";
+        item_resultsBox.style.display = "none"
     }
 
     loadItemSuppliersTable(matches)
@@ -1028,11 +1097,11 @@ function loadRequestTable(data){
     })
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    const suppliers = readJsonFile('suppliers.json')
-    loadSuppliersTable(suppliers)
-    loadItemSuppliersTable(suppliers)
-    const items = sortItems(readJsonFile('items.json'))
-    writeDataToJsonFile("items.json", items)
-    loadRequestTable(items)
-})
+// document.addEventListener('DOMContentLoaded', () => {
+//     const suppliers = readJsonFile('suppliers.json')
+//     loadSuppliersTable(suppliers)
+//     loadItemSuppliersTable(suppliers)
+//     const items = sortItems(readJsonFile('items.json'))
+//     writeDataToJsonFile("items.json", items)
+//     loadRequestTable(items)
+// })

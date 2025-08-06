@@ -5,6 +5,7 @@
     font-family: "Comfortaa", sans-serif;
     font-weight: 400;
     font-style: normal;
+    z-index: 1;
 }
 
 html, 
@@ -51,10 +52,12 @@ tr:nth-of-type(2n){
 
 th{
     text-align: center;
+    font-size: 1.2rem;
 }
 
 td{
     text-align: left;
+    font-size: 1rem;
 }
 
 td,
@@ -62,6 +65,10 @@ th{
     height: 7vh;
     padding: 1rem;
     vertical-align: middle;
+}
+
+label{
+    font-size: 1.2rem;
 }
 
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -77,6 +84,7 @@ th{
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    gap: 1%;
     height: 55px;
     width: 60%;
     border: 1px black solid;
@@ -85,14 +93,13 @@ th{
     background-color: rgb(55, 114, 241);
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
     color: white;
+    font-size: 1.2rem;
 }
 
 .buttonIcons{
-    position: absolute;
-    top: 7px;
-    left: 7px;
-    height: 40px;
-    width: 40px;
+    position: relative;
+    height: 50px;
+    width: 50px;
 }
 
 .inputField{
@@ -100,6 +107,7 @@ th{
     height: 40px;
     width: 70%;
     padding-left: 2%;
+    font-size: 1rem;
 }
 
 .inputArea{
@@ -175,6 +183,7 @@ th{
     align-items: center;
     height: 30%;
     width: 100%;
+    font-size: 2rem;
 }
 
 #homeCardContentDiv{
@@ -188,6 +197,17 @@ th{
     width: 100%;
 }
 
+#updateDatabasePageHomeButton{
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    height: 8%;
+    width: 10%;
+    padding-left: 2%;
+    padding-top: 1%;
+    cursor: pointer;
+}
+
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------------- */
 #updateDatabasePageMainCard{
     position: relative;
@@ -198,6 +218,7 @@ th{
     gap: 10%;
     height: 90%;
     width: 60%;
+    font-size: 1.5rem;
 }
 
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -215,6 +236,7 @@ th{
     height: 20%;
     width: 100%;
     border-radius: 0;
+    z-index: 2;
 }
 
 #browseSuppliersPageNavbarLeft{
@@ -228,12 +250,10 @@ th{
 
 #browseSuppliersPageHomeButton{
     width: 50%;
-    font-size: 1.5rem;
 }
 
 #browseSuppliersPageDetailsButton{
     width: 50%;
-    font-size: 1.5rem;
 }
 
 #browseSuppliersPageNavbarMiddle{
@@ -264,37 +284,19 @@ th{
 
 #results{
     position:absolute;
-    left: 0;
-    top: 65%;
-    width: 100%;
-    height: 100px;
-    background: white;
-    z-index: 2;
-}
-
-#item_searchContainer{
-    position: relative;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-}
-
-#item_searchBox{
-    height: 28%;
-    width: 100%;
-    border-radius: 50px;
-}
-
-#item_results{
-    position:absolute;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
     left: 0;
     top: 65%;
     width: 100%;
-    height: 100px;
+    height: 120%;
     background: white;
-    z-index: 2;
+    border: 3px black solid;
+    border-radius: 10px;
+    overflow-y: scroll;
+    font-size: 1rem;
 }
 
 #browseSuppliersPageSearchButton{
@@ -312,7 +314,6 @@ th{
     justify-content: center;
     align-items: center;
     gap: 5%;
-    font-size:medium;
     height: 100%;
     width: 100%;
 }
@@ -320,7 +321,11 @@ th{
 #browseSuppliersPageTable{
     height: 70%;
     width: 95%;
-    table-layout: fixed
+    table-layout: fixed;
+}
+
+#browseSuppliersPageTableHeaderRow{
+    font-size: 1.2rem;
 }
 
 #browseSuppliersPageTableSupplierName{
@@ -339,6 +344,10 @@ th{
     width: 30%;
 }
 
+#browseSuppliersPageTableContentRows{
+    font-size: 1rem;
+}
+
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------------- */
 #supplierDetailsPage{
     justify-content: flex-start;
@@ -353,10 +362,7 @@ th{
     height: 20%;
     width: 100%;
     background: white;
-}
-
-#supplierDetailsPageNavbar h1{
-    font-size: 3rem;
+    font-size: 1.5rem;
 }
 
 #supplierDetailsPageBackButton{
@@ -419,7 +425,6 @@ th{
     height: 55px;
     width: 100%;
     text-align: center;
-    font-size: 1rem;
 }
 
 #requestedItemsPageTable{
@@ -558,6 +563,7 @@ th{
     height: 20%;
     width: 100%;
     border-radius: 0;
+    z-index: 2;
 }
 
 #item_browseSuppliersPageNavbarLeft{
@@ -571,12 +577,10 @@ th{
 
 #item_browseSuppliersPageBackButton{
     width: 50%;
-    font-size: 1.5rem;
 }
 
 #item_browseSuppliersPageDetailsButton{
     width: 50%;
-    font-size: 1.5rem;
 }
 
 #item_browseSuppliersPageNavbarMiddle{
@@ -590,9 +594,36 @@ th{
     width: 100%;
 }
 
-#item_browseSuppliersPageSearchbar{
-    height: 55px;
-    width: 50%;
+#item_searchContainer{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+#item_searchBox{
+    height: 28%;
+    width: 100%;
+    border-radius: 50px;
+}
+
+#item_results{
+    position:absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    left: 0;
+    top: 65%;
+    width: 100%;
+    height: 120%;
+    background: white;
+    border: 3px black solid;
+    border-radius: 10px;
+    overflow-y: scroll;
+    font-size: 1rem;
 }
 
 #item_browseSuppliersPageSearchButton{
@@ -610,7 +641,6 @@ th{
     justify-content: center;
     align-items: center;
     gap: 5%;
-    font-size:medium;
     height: 100%;
     width: 100%;
 }
@@ -651,10 +681,7 @@ th{
     height: 20%;
     width: 100%;
     background: white;
-}
-
-#item_supplierDetailsPageNavbar h1{
-    font-size: 3rem;
+    font-size: 1.5rem;
 }
 
 #item_supplierDetailsPageBackButton{
@@ -697,6 +724,7 @@ th{
     text-align: center;
     height: 50%;
     width: 50%;
+    font-size: 1.2rem;
 }
 
 #removeCompanyForm{
@@ -708,4 +736,5 @@ th{
     text-align: center;
     height: 50%;
     width: 50%;
+    font-size: 1.2rem;
 }
