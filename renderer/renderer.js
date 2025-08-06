@@ -946,6 +946,25 @@ document.addEventListener("click", (e) => {
     }
 })
 
+function adjustRootFontSize() {
+    const baseWidth = 1920; // your design width (change as needed)
+    const baseFontSize = 16; // default root font size
+
+    // scale proportionally with width
+    let newFontSize = (window.innerWidth / baseWidth) * baseFontSize;
+
+    // set a minimum and maximum size if you want
+    newFontSize = Math.max(12, Math.min(newFontSize, 20));
+
+    document.documentElement.style.fontSize = newFontSize + "px";
+}
+
+// Run on page load
+window.addEventListener("load", adjustRootFontSize);
+
+// Run on resize
+window.addEventListener("resize", adjustRootFontSize);
+
 // Initialization functions--------------------------------------------------------------------------------------------------------------------
 
 function loadConsideredSuppliersTable(){
@@ -1097,11 +1116,11 @@ function loadRequestTable(data){
     })
 }
 
-// document.addEventListener('DOMContentLoaded', () => {
-//     const suppliers = readJsonFile('suppliers.json')
-//     loadSuppliersTable(suppliers)
-//     loadItemSuppliersTable(suppliers)
-//     const items = sortItems(readJsonFile('items.json'))
-//     writeDataToJsonFile("items.json", items)
-//     loadRequestTable(items)
-// })
+document.addEventListener('DOMContentLoaded', () => {
+    const suppliers = readJsonFile('suppliers.json')
+    loadSuppliersTable(suppliers)
+    loadItemSuppliersTable(suppliers)
+    const items = sortItems(readJsonFile('items.json'))
+    writeDataToJsonFile("items.json", items)
+    loadRequestTable(items)
+})
