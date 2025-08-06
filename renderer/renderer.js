@@ -102,6 +102,11 @@ requestedItemsPageAddItemButton.addEventListener('click', () => {
 
 //Closing the entry form for a new item-------------------------------------------------------------------------------------------------------
 const entryFormCancelButton = document.querySelector('#entryFormCancelButton')
+const itemRequested = document.querySelector('#itemRequested')
+const dateField = document.querySelector('#dateField')
+const monthField = document.querySelector('#monthField')
+const yearField = document.querySelector('#yearField')
+
 
 entryFormCancelButton.addEventListener('click', () => {
     addEntryForm.style.display = 'none'
@@ -112,10 +117,10 @@ entryFormCancelButton.addEventListener('click', () => {
 function submitRequestForm(e){
     e.preventDefault()
 
-    const requestedItem = document.querySelector('#itemRequested').value.trim()
-    const dateValue = document.querySelector('#dateField').value.trim()
-    const monthValue = document.querySelector('#monthField').value.trim()
-    const yearValue = document.querySelector('#yearField').value.trim()
+    const requestedItem = itemRequested.value.trim()
+    const dateValue = dateField.value.trim()
+    const monthValue = monthField.value.trim()
+    const yearValue = yearField.value.trim()
 
     if (!requestedItem || !dateValue || !monthValue || !yearValue){
         return
@@ -146,6 +151,11 @@ function submitRequestForm(e){
     loadRequestTable(sortedData)
     addEntryForm.style.display = "none"
     requestedItemsPage.style.display = "flex"
+
+    itemRequested.value = ""
+    dateField.value = ""
+    monthField.value = ""
+    yearField.value = ""
 }
 addEntryForm.addEventListener('submit', submitRequestForm)
 
@@ -1108,7 +1118,7 @@ function loadRequestTable(data){
                 <td>${entry.requestedItem}</td>
                 <td>${textDate}</td>
                 <td>
-                    <button class="button">VIEW</button>
+                    <button class="button">View</button>
                 </td>
                 <td>${entry.chosenCompany}</td>
             </tr>

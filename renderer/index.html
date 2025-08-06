@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="./style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <script src="./renderer.js" defer></script>
     <meta http-equiv="Content-Security-Policy" content="script-src 'self">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,7 +14,7 @@
 </head>
 <body>
     <!-- Home Page---------------------------------------------------------------------------------- -->
-    <div id="homePage" style="display: none;">
+    <div id="homePage" style="display: flex;">
         <div class="card" id="homeCard">
             <div id="homeCardHeadingDiv">
                 <h1>Procurement Manager</h1>
@@ -34,7 +37,7 @@
     </div>
 
     <!-- Update Database Page----------------------------------------------------------------------- -->
-    <div id="updateDatabasePage" style="display: flex;">
+    <div id="updateDatabasePage" style="display: none;">
         <div class="card" id="updateDatabasePageMainCard">
             <h1>Enter OPR Login Information</h1>
             <input type="text" class="inputField" id="oprEmail" placeholder="Email">
