@@ -3,9 +3,6 @@
 <head>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="./style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <script src="./renderer.js" defer></script>
     <meta http-equiv="Content-Security-Policy" content="script-src 'self">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -42,6 +39,14 @@
             <h1>Enter OPR Login Information</h1>
             <input type="text" class="inputField" id="oprEmail" placeholder="Email">
             <input type="text" class="inputField" id="oprPassword" placeholder="Password">
+            <div id="securityQuestionsDropdownContainer">
+                <select name="securityQuestionsDropdownMenu" id="securityQuestionsDropdownMenu" class="button">
+                    <option value="createdAsc">Where was your first job?</option>
+                    <option value="createdDesc">Where was the city you met your spouse?</option>
+                    <option value="itemNameAsc">Who is your favourite singer?</option>
+                </select>
+                <input type="text" class="inputField" id="securityQuestionAnswer" placeholder="Answer">
+            </div>
             <button class="button" id="updateDatabaseButton">
                 <!-- <img src="./assets/images/update.png" alt="" class="buttonIcons" id="scrapeActionButtonIcon"> -->
                 Update Database
@@ -64,7 +69,7 @@
             <div id="browseSuppliersPageNavbarMiddle">
                 <div id="searchContainer">
                     <input type="Search" class="inputField" id="searchBox">
-                    <div id="results">
+                    <div id="results" class="card">
                     </div>
                 </div>
             </div>
@@ -283,19 +288,19 @@
         <div id="companyConsiderationPageNavbar">
             <a id="companyConsiderationPageBackButton" class="button">
                 <!-- <img src="./assets/images/home.png" alt="" class="buttonIcons" id="requestHomeIcon"> -->
-                BACK
+                Back
             </a>
             <button id="companyConsiderationPageAddCompanyButton" class="button">
-                ADD COMPANY
+                Add Company
             </button>
             <button id="companyConsiderationPageRemoveCompanyButton" class="button">
-                REMOVE COMPANY
+                Remove Company
             </button>
             <button id="companyConsiderationPageSelectCompanyButton" class="button" style="display: flex;">
-                SELECT COMPANY
+                Select Company
             </button>
             <button id="companyConsiderationPageUnselectCompanyButton" class="button" style="display: none;">
-                UNSELECT COMPANY
+                Unselect Company
             </button>
         </div>
         <table class="card" id="companyConsiderationPageTable">
@@ -327,7 +332,7 @@
             <div id="item_browseSuppliersPageNavbarMiddle">
                 <div id="item_searchContainer">
                     <input type="Search" class="inputField" id="item_searchBox">
-                    <div id="item_results"></div>
+                    <div id="item_results" class="card"></div>
                 </div>
             </div>
             <div id="item_browseSuppliersPageNavbarRight">

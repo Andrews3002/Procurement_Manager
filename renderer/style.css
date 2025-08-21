@@ -221,6 +221,23 @@ label{
     font-size: 1.5rem;
 }
 
+#securityQuestionsDropdownContainer{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 70%;
+}
+
+#securityQuestionsDropdownMenu{
+    height: 100%;
+    width: 49%;
+    border-radius: 10px;
+}
+
+#securityQuestionAnswer{
+    width: 49%;
+}
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------------- */
 #browseSuppliersPage{
     justify-content: flex-start;
@@ -292,8 +309,6 @@ label{
     top: 65%;
     width: 100%;
     height: 120%;
-    background: white;
-    border: 3px black solid;
     border-radius: 10px;
     overflow-y: scroll;
     font-size: 1rem;
@@ -449,7 +464,7 @@ label{
 }
 
 #requestedItemsPageTableContentRows button{
-    height: 80%;
+    height: 4vh;
     width: 60%;
 }
 
@@ -619,8 +634,6 @@ label{
     top: 65%;
     width: 100%;
     height: 120%;
-    background: white;
-    border: 3px black solid;
     border-radius: 10px;
     overflow-y: scroll;
     font-size: 1rem;

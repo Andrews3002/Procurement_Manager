@@ -749,12 +749,24 @@ companyConsiderationPageUnselectCompanyButton.addEventListener('click', () => {
 })
 
 //Searching on the browseSuppliers Page-----------------------------------------------------------------------------------------------------------------------------------
-const Fuse = require("fuse.js")
+const { distance } = require("fastest-levenshtein")
 
 const suppliers = readJsonFile("suppliers.json")
 
 const searchBox = document.querySelector("#searchBox")
 const resultsBox = document.querySelector("#results")
+
+function levenshteinSentence(sentence, query){
+    words = sentence.split(" ")
+
+    for (word of words){
+        if (distance(query, word) <= 2){
+            return true
+        }
+    }
+
+    return false
+}
 
 searchBox.addEventListener("input", () => {
     const query = searchBox.value.toLowerCase().trim()
@@ -766,27 +778,31 @@ searchBox.addEventListener("input", () => {
         return
     }
 
-    // const matches = suppliers.filter(s =>
-    //     s.supplierName.toLowerCase().includes(query) ||
-    //     s.status.toLowerCase().includes(query) ||
-    //     s.supplierNumber.toLowerCase().includes(query) ||
-    //     s.services.toLowerCase().includes(query) ||
-    //     s.streetAddress1.toLowerCase().includes(query) ||
-    //     s.streetAddress2.toLowerCase().includes(query) ||
-    //     s.streetAddress3.toLowerCase().includes(query) ||
-    //     s.city.toLowerCase().includes(query)
-    // )
+    const matches = suppliers.filter(s =>
+        s.supplierName.toLowerCase().includes(query) ||
+        levenshteinSentence(s.supplierName.toLowerCase(), query) ||
 
-    const options = {
-        keys: ["supplierName","status","supplierNumber","services","streetAddress1","streetAddress2","streetAddress3","city"],
-        threshold: 0
-    }
+        s.status.toLowerCase().includes(query) ||
+        levenshteinSentence(s.status.toLowerCase(), query) ||
 
-    const fuse = new Fuse(suppliers, options);
+        s.supplierNumber.toLowerCase().includes(query) ||
+        levenshteinSentence(s.supplierNumber.toLowerCase(), query) ||
 
-    const results = fuse.search(query);
+        s.services.toLowerCase().includes(query) ||
+        levenshteinSentence(s.services.toLowerCase(), query) ||
 
-    const matches = results.map(r => r.item)
+        s.streetAddress1.toLowerCase().includes(query) ||
+        levenshteinSentence(s.streetAddress1.toLowerCase(), query) ||
+
+        s.streetAddress2.toLowerCase().includes(query) ||
+        levenshteinSentence(s.streetAddress2.toLowerCase(), query) ||
+
+        s.streetAddress3.toLowerCase().includes(query) ||
+        levenshteinSentence(s.streetAddress3.toLowerCase(), query) ||
+
+        s.city.toLowerCase().includes(query) ||
+        levenshteinSentence(s.city.toLowerCase(), query)
+    )
 
     if (matches.length > 0) {
         matches.forEach(match => {
@@ -812,7 +828,7 @@ searchBox.addEventListener("input", () => {
 
             let suggestion = ""
             for (let field of fields) {
-                if (match[field] && match[field].toLowerCase().includes(query)) {
+                if (match[field] && (match[field].toLowerCase().includes(query) || levenshteinSentence(match[field].toLowerCase(), query))){
                     suggestion = match[field]
                     break
                 }
@@ -828,7 +844,7 @@ searchBox.addEventListener("input", () => {
             })
 
             div.addEventListener("mouseover", () => {
-                div.style.background = "rgb(55, 114, 241)"
+                div.style.background = "hsl(221 87% 58% / 0.5)"
             })
 
             div.addEventListener("mouseout", () => {
@@ -853,7 +869,7 @@ document.addEventListener("click", (e) => {
     }
 })
 
-//Searching on the browseSuppliers Page-----------------------------------------------------------------------------------------------------------------------------------
+//Searching on the item_browseSuppliers Page-----------------------------------------------------------------------------------------------------------------------------------
 const item_suppliers = readJsonFile("suppliers.json")
 
 const item_searchBox = document.querySelector("#item_searchBox")
@@ -869,27 +885,31 @@ item_searchBox.addEventListener("input", () => {
         return
     }
 
-    // const matches = item_suppliers.filter(s =>
-    //     s.supplierName.toLowerCase().includes(query) ||
-    //     s.status.toLowerCase().includes(query) ||
-    //     s.supplierNumber.toLowerCase().includes(query) ||
-    //     s.services.toLowerCase().includes(query) ||
-    //     s.streetAddress1.toLowerCase().includes(query) ||
-    //     s.streetAddress2.toLowerCase().includes(query) ||
-    //     s.streetAddress3.toLowerCase().includes(query) ||
-    //     s.city.toLowerCase().includes(query)
-    // )
+    const matches = item_suppliers.filter(s =>
+        s.supplierName.toLowerCase().includes(query) ||
+        levenshteinSentence(s.supplierName.toLowerCase(), query) ||
 
-    const options = {
-        keys: ["supplierName","status","supplierNumber","services","streetAddress1","streetAddress2","streetAddress3","city"],
-        threshold: 0
-    }
+        s.status.toLowerCase().includes(query) ||
+        levenshteinSentence(s.status.toLowerCase(), query) ||
 
-    const fuse = new Fuse(suppliers, options);
+        s.supplierNumber.toLowerCase().includes(query) ||
+        levenshteinSentence(s.supplierNumber.toLowerCase(), query) ||
 
-    const results = fuse.search(query);
+        s.services.toLowerCase().includes(query) ||
+        levenshteinSentence(s.services.toLowerCase(), query) ||
 
-    const matches = results.map(r => r.item)
+        s.streetAddress1.toLowerCase().includes(query) ||
+        levenshteinSentence(s.streetAddress1.toLowerCase(), query) ||
+
+        s.streetAddress2.toLowerCase().includes(query) ||
+        levenshteinSentence(s.streetAddress2.toLowerCase(), query) ||
+
+        s.streetAddress3.toLowerCase().includes(query) ||
+        levenshteinSentence(s.streetAddress3.toLowerCase(), query) ||
+
+        s.city.toLowerCase().includes(query) ||
+        levenshteinSentence(s.city.toLowerCase(), query)
+    )
 
     if (matches.length > 0) {
         matches.forEach(match => {
@@ -915,7 +935,7 @@ item_searchBox.addEventListener("input", () => {
 
             let suggestion = ""
             for (let field of fields) {
-                if (match[field] && match[field].toLowerCase().includes(query)) {
+                if (match[field] && (match[field].toLowerCase().includes(query) || levenshteinSentence(match[field].toLowerCase(), query))){
                     suggestion = match[field]
                     break
                 }
@@ -931,17 +951,17 @@ item_searchBox.addEventListener("input", () => {
             })
 
             div.addEventListener("mouseover", () => {
-                div.style.background = "rgb(55, 114, 241)"
+                div.style.background = "hsl(221 87% 58% / 0.5)"
             })
 
             div.addEventListener("mouseout", () => {
                 div.style.background = "white"
             })
 
-            item_resultsBox.appendChild(div)
+            item_resultsBox.appendChild(div);
         })
 
-        item_resultsBox.style.display = "block"
+        item_resultsBox.style.display = "flex"
     } 
     else {
         item_resultsBox.style.display = "none"
