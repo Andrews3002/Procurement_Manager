@@ -382,36 +382,36 @@ browseSuppliersPageDetailsButton.addEventListener('click', () => {
 
     const suppliersData = readJsonFile("suppliers.json")
 
-    const supplier = suppliersData.find(obj => obj.supplierNumber == selectedSupplierID)
+    const supplier = suppliersData.find(obj => obj.SupplierNumber == selectedSupplierID)
 
-    supplierHeaderName.innerText = supplier.supplierName
-    supplierDetailsPageSupplierNumber.innerText = supplier.supplierNumber
-    supplierDetailsPageServices.innerText = supplier.services
-    supplierDetailsPageBuildingName.innerText = supplier.buildingName
-    supplierDetailsPageStreetAddress1.innerText = supplier.streetAddress1
-    supplierDetailsPageStreetAddress2.innerText = supplier.streetAddress2
-    supplierDetailsPageStreetAddress3.innerText = supplier.streetAddress3
-    supplierDetailsPageCity.innerText = supplier.city
-    supplierDetailsPageSupplierType.innerText = supplier.supplierType
-    supplierDetailsPageEmployeesQuantity.innerText = supplier.employeesQuantity
-    supplierDetailsPageNatureOfBusinessOrService.innerText = supplier.natureOfBusinessOrService
-    supplierDetailsPageFirmLegalName.innerText = supplier.firmLegalName
-    supplierDetailsPageOperatedUnderOtherBusiness.innerText = supplier.operatedUnderOtherBusiness
-    supplierDetailsPageOtherBusinessName.innerText = supplier.otherBusinessName
-    supplierDetailsPageSubsidiaryAffiliateFirm.innerText = supplier.subsidiaryAffiliateFirm
+    supplierHeaderName.innerText = supplier.SupplierName
+    supplierDetailsPageSupplierNumber.innerText = supplier.SupplierNumber
+    supplierDetailsPageServices.innerText = supplier.Services
+    supplierDetailsPageBuildingName.innerText = supplier.BuildingNm
+    supplierDetailsPageStreetAddress1.innerText = supplier.Street1Addr
+    supplierDetailsPageStreetAddress2.innerText = supplier.Street2Addr
+    supplierDetailsPageStreetAddress3.innerText = supplier.Street3Addr
+    supplierDetailsPageCity.innerText = supplier.CityNm
+    supplierDetailsPageSupplierType.innerText = supplier.SupplierTypeCd
+    supplierDetailsPageEmployeesQuantity.innerText = supplier.EmployeesQty
+    supplierDetailsPageNatureOfBusinessOrService.innerText = supplier.NatureOfBusinessOrServicesTxt
+    supplierDetailsPageFirmLegalName.innerText = supplier.FirmLegalNm
+    supplierDetailsPageOperatedUnderOtherBusiness.innerText = supplier.Operated_Under_Other_Business_
+    supplierDetailsPageOtherBusinessName.innerText = supplier.OtherBusinessNm
+    supplierDetailsPageSubsidiaryAffiliateFirm.innerText = supplier.Subsidiary_Affiliate_Firm_
     supplierDetailsPageAffiliatesName.innerText = supplier.affiliatesName
-    supplierDetailsPageLegalQuery.innerText = supplier.legalQuery
-    supplierDetailsPageLegalQueryDetails.innerText = supplier.legalQueryDetails
-    supplierDetailsPageIncorporationOrRegistrationYear.innerText = supplier.incorporationOrRegistrationYear
-    supplierDetailsPageIncorporationOrRegistrationCountry.innerText = supplier.incorporationOrRegistrationCountry
-    supplierDetailsPageWebsiteAddress.innerText = supplier.websiteAddress
-    supplierDetailsPageMunicipality.innerText = supplier.municipality
-    supplierDetailsPageCountry.innerText = supplier.country
-    supplierDetailsPagePostalCode.innerText = supplier.postalCode
-    supplierDetailsPageTelephone.innerText = supplier.telephone
-    supplierDetailsPageAddressType.innerText = supplier.addressType
-    supplierDetailsPageCreatedBy.innerText = supplier.createdBy
-    supplierDetailsPageCreatedTimestamp.innerText = supplier.createdTimestamp
+    supplierDetailsPageLegalQuery.innerText = supplier.Legal_Query_
+    supplierDetailsPageLegalQueryDetails.innerText = supplier.LegalQueryDetailsTxt
+    supplierDetailsPageIncorporationOrRegistrationYear.innerText = supplier.IncorporationYr
+    supplierDetailsPageIncorporationOrRegistrationCountry.innerText = supplier.IncorporationCountryCd
+    supplierDetailsPageWebsiteAddress.innerText = supplier.CompanyWebsiteUrl
+    supplierDetailsPageMunicipality.innerText = supplier.GeographicLocationCd
+    supplierDetailsPageCountry.innerText = supplier.CountryCd
+    supplierDetailsPagePostalCode.innerText = supplier.PostalCd
+    supplierDetailsPageTelephone.innerText = supplier.TelephoneNum
+    supplierDetailsPageAddressType.innerText = supplier.AddressTypeTp
+    supplierDetailsPageCreatedBy.innerText = supplier.CreBy
+    supplierDetailsPageCreatedTimestamp.innerText = supplier.CreDttm
 })
 
 //Going back to browsesupplierpage from supplierdetails page----------------------------------------------------------------------------------------------------
@@ -488,36 +488,36 @@ item_browseSuppliersPageDetailsButton.addEventListener('click', () => {
 
     const item_suppliersData = readJsonFile("suppliers.json")
 
-    const item_supplier = item_suppliersData.find(obj => obj.supplierNumber == selectedItemSupplierID)
+    const item_supplier = item_suppliersData.find(obj => obj.SupplierNumber == selectedItemSupplierID)
 
-    item_supplierHeaderName.innerText = item_supplier.supplierName
-    item_supplierDetailsPageSupplierNumber.innerText = item_supplier.supplierNumber
-    item_supplierDetailsPageServices.innerText = item_supplier.services
-    item_supplierDetailsPageBuildingName.innerText = item_supplier.buildingName
-    item_supplierDetailsPageStreetAddress1.innerText = item_supplier.streetAddress1
-    item_supplierDetailsPageStreetAddress2.innerText = item_supplier.streetAddress2
-    item_supplierDetailsPageStreetAddress3.innerText = item_supplier.streetAddress3
-    item_supplierDetailsPageCity.innerText = item_supplier.city
-    item_supplierDetailsPageSupplierType.innerText = item_supplier.supplierType
-    item_supplierDetailsPageEmployeesQuantity.innerText = item_supplier.employeesQuantity
-    item_supplierDetailsPageNatureOfBusinessOrService.innerText = item_supplier.natureOfBusinessOrService
-    item_supplierDetailsPageFirmLegalName.innerText = item_supplier.firmLegalName
-    item_supplierDetailsPageOperatedUnderOtherBusiness.innerText = item_supplier.operatedUnderOtherBusiness
-    item_supplierDetailsPageOtherBusinessName.innerText = item_supplier.otherBusinessName
-    item_supplierDetailsPageSubsidiaryAffiliateFirm.innerText = item_supplier.subsidiaryAffiliateFirm
+    item_supplierHeaderName.innerText = item_supplier.SupplierName
+    item_supplierDetailsPageSupplierNumber.innerText = item_supplier.SupplierNumber
+    item_supplierDetailsPageServices.innerText = item_supplier.Services
+    item_supplierDetailsPageBuildingName.innerText = item_supplier.BuildingNm
+    item_supplierDetailsPageStreetAddress1.innerText = item_supplier.Street1Addr
+    item_supplierDetailsPageStreetAddress2.innerText = item_supplier.Street2Addr
+    item_supplierDetailsPageStreetAddress3.innerText = item_supplier.Street3Addr
+    item_supplierDetailsPageCity.innerText = item_supplier.CityNm
+    item_supplierDetailsPageSupplierType.innerText = item_supplier.SupplierTypeCd
+    item_supplierDetailsPageEmployeesQuantity.innerText = item_supplier.EmployeesQty
+    item_supplierDetailsPageNatureOfBusinessOrService.innerText = item_supplier.NatureOfBusinessOrServicesTxt
+    item_supplierDetailsPageFirmLegalName.innerText = item_supplier.FirmLegalNm
+    item_supplierDetailsPageOperatedUnderOtherBusiness.innerText = item_supplier.Operated_Under_Other_Business_
+    item_supplierDetailsPageOtherBusinessName.innerText = item_supplier.OtherBusinessNm
+    item_supplierDetailsPageSubsidiaryAffiliateFirm.innerText = item_supplier.Subsidiary_Affiliate_Firm_
     item_supplierDetailsPageAffiliatesName.innerText = item_supplier.affiliatesName
-    item_supplierDetailsPageLegalQuery.innerText = item_supplier.legalQuery
-    item_supplierDetailsPageLegalQueryDetails.innerText = item_supplier.legalQueryDetails
-    item_supplierDetailsPageIncorporationOrRegistrationYear.innerText = item_supplier.incorporationOrRegistrationYear
-    item_supplierDetailsPageIncorporationOrRegistrationCountry.innerText = item_supplier.incorporationOrRegistrationCountry
-    item_supplierDetailsPageWebsiteAddress.innerText = item_supplier.websiteAddress
-    item_supplierDetailsPageMunicipality.innerText = item_supplier.municipality
-    item_supplierDetailsPageCountry.innerText = item_supplier.country
-    item_supplierDetailsPagePostalCode.innerText = item_supplier.postalCode
-    item_supplierDetailsPageTelephone.innerText = item_supplier.telephone
-    item_supplierDetailsPageAddressType.innerText = item_supplier.addressType
-    item_supplierDetailsPageCreatedBy.innerText = item_supplier.createdBy
-    item_supplierDetailsPageCreatedTimestamp.innerText = item_supplier.createdTimestamp
+    item_supplierDetailsPageLegalQuery.innerText = item_supplier.Legal_Query_
+    item_supplierDetailsPageLegalQueryDetails.innerText = item_supplier.LegalQueryDetailsTxt
+    item_supplierDetailsPageIncorporationOrRegistrationYear.innerText = item_supplier.IncorporationYr
+    item_supplierDetailsPageIncorporationOrRegistrationCountry.innerText = item_supplier.IncorporationCountryCd
+    item_supplierDetailsPageWebsiteAddress.innerText = item_supplier.CompanyWebsiteUrl
+    item_supplierDetailsPageMunicipality.innerText = item_supplier.GeographicLocationCd
+    item_supplierDetailsPageCountry.innerText = item_supplier.CountryCd
+    item_supplierDetailsPagePostalCode.innerText = item_supplier.PostalCd
+    item_supplierDetailsPageTelephone.innerText = item_supplier.TelephoneNum
+    item_supplierDetailsPageAddressType.innerText = item_supplier.AddressTypeTp
+    item_supplierDetailsPageCreatedBy.innerText = item_supplier.CreBy
+    item_supplierDetailsPageCreatedTimestamp.innerText = item_supplier.CreDttm
 
 })
 
@@ -539,19 +539,19 @@ item_supplierDetailsPageConsiderButton.addEventListener('click', () => {
     let duplicate = false
 
     const item = items.find(obj => obj.requestedItemID == selectedItemID)
-    const supplier = suppliers.find(obj => obj.supplierNumber == selectedItemSupplierID)
+    const supplier = suppliers.find(obj => obj.SupplierNumber == selectedItemSupplierID)
 
     const consideredCompanies = item.pendingCompanies
 
     consideredCompanies.forEach(comp => {
-        if (comp.supplierNumber == selectedItemSupplierID){
+        if (comp.SupplierNumber == selectedItemSupplierID){
             duplicate = true
             return
         }
     })
 
     if (duplicate){
-        console.log(item.supplierName, " is already under consideration")
+        console.log(item.SupplierName, " is already under consideration")
         return
     }
     
@@ -645,7 +645,7 @@ removeCompanyButton.addEventListener('click', (e) => {
 
     const items = readJsonFile('items.json')
     const item = items.find(obj => obj.requestedItemID == selectedItemID)
-    const consideredCompanies = item.pendingCompanies.filter(obj => obj.supplierNumber != selectedConsideredID)
+    const consideredCompanies = item.pendingCompanies.filter(obj => obj.SupplierNumber != selectedConsideredID)
 
     item.pendingCompanies = consideredCompanies
     const newItems = items.filter(obj => obj.requestedItemID != selectedItemID)
@@ -674,10 +674,10 @@ companyConsiderationPageSelectCompanyButton.addEventListener('click', () => {
 
     const item = items.find(obj => obj.requestedItemID == selectedItemID)
 
-    const selectedCompany = item.pendingCompanies.find(obj => obj.supplierNumber == selectedConsideredID)
+    const selectedCompany = item.pendingCompanies.find(obj => obj.SupplierNumber == selectedConsideredID)
 
-    item.chosenCompany = selectedCompany.supplierName
-    item.chosenCompanyID = selectedCompany.supplierNumber
+    item.chosenCompany = selectedCompany.SupplierName
+    item.chosenCompanyID = selectedCompany.SupplierNumber
 
     companyConsiderationPageSelectCompanyButton.style.display = "none"
     companyConsiderationPageUnselectCompanyButton.style.display = "flex"
@@ -779,29 +779,29 @@ searchBox.addEventListener("input", () => {
     }
 
     const matches = suppliers.filter(s =>
-        s.supplierName.toLowerCase().includes(query) ||
-        levenshteinSentence(s.supplierName.toLowerCase(), query) ||
+        s.SupplierName.toLowerCase().includes(query) ||
+        levenshteinSentence(s.SupplierName.toLowerCase(), query) ||
 
-        s.status.toLowerCase().includes(query) ||
-        levenshteinSentence(s.status.toLowerCase(), query) ||
+        s.Status.toLowerCase().includes(query) ||
+        levenshteinSentence(s.Status.toLowerCase(), query) ||
 
-        s.supplierNumber.toLowerCase().includes(query) ||
-        levenshteinSentence(s.supplierNumber.toLowerCase(), query) ||
+        s.SupplierNumber.toLowerCase().includes(query) ||
+        levenshteinSentence(s.SupplierNumber.toLowerCase(), query) ||
 
-        s.services.toLowerCase().includes(query) ||
-        levenshteinSentence(s.services.toLowerCase(), query) ||
+        s.Services.toLowerCase().includes(query) ||
+        levenshteinSentence(s.Services.toLowerCase(), query) ||
 
-        s.streetAddress1.toLowerCase().includes(query) ||
-        levenshteinSentence(s.streetAddress1.toLowerCase(), query) ||
+        s.Street1Addr.toLowerCase().includes(query) ||
+        levenshteinSentence(s.Street1Addr.toLowerCase(), query) ||
 
-        s.streetAddress2.toLowerCase().includes(query) ||
-        levenshteinSentence(s.streetAddress2.toLowerCase(), query) ||
+        s.Street2Addr.toLowerCase().includes(query) ||
+        levenshteinSentence(s.Street2Addr.toLowerCase(), query) ||
 
-        s.streetAddress3.toLowerCase().includes(query) ||
-        levenshteinSentence(s.streetAddress3.toLowerCase(), query) ||
+        s.Street3Addr.toLowerCase().includes(query) ||
+        levenshteinSentence(s.Street3Addr.toLowerCase(), query) ||
 
-        s.city.toLowerCase().includes(query) ||
-        levenshteinSentence(s.city.toLowerCase(), query)
+        s.CityNm.toLowerCase().includes(query) ||
+        levenshteinSentence(s.CityNm.toLowerCase(), query)
     )
 
     if (matches.length > 0) {
@@ -816,14 +816,14 @@ searchBox.addEventListener("input", () => {
 
             // Find which field matched and show that value
             const fields = [
-                "supplierName",
-                "status",
-                "supplierNumber",
-                "services",
-                "streetAddress1",
-                "streetAddress2",
-                "streetAddress3",
-                "city"
+                "SupplierName",
+                "Status",
+                "SupplierNumber",
+                "Services",
+                "Street1Addr",
+                "Street2Addr",
+                "Street3Addr",
+                "CityNm"
             ]
 
             let suggestion = ""
@@ -834,7 +834,7 @@ searchBox.addEventListener("input", () => {
                 }
             }
 
-            div.textContent = suggestion || match.supplierName
+            div.textContent = suggestion || match.SupplierName
 
             div.style.cursor = "pointer"
 
@@ -886,29 +886,26 @@ item_searchBox.addEventListener("input", () => {
     }
 
     const matches = item_suppliers.filter(s =>
-        s.supplierName.toLowerCase().includes(query) ||
-        levenshteinSentence(s.supplierName.toLowerCase(), query) ||
+        s.SupplierName.toLowerCase().includes(query) ||
+        levenshteinSentence(s.SupplierName.toLowerCase(), query) ||
 
-        s.status.toLowerCase().includes(query) ||
-        levenshteinSentence(s.status.toLowerCase(), query) ||
+        s.SupplierNumber.toLowerCase().includes(query) ||
+        levenshteinSentence(s.SupplierNumber.toLowerCase(), query) ||
 
-        s.supplierNumber.toLowerCase().includes(query) ||
-        levenshteinSentence(s.supplierNumber.toLowerCase(), query) ||
+        s.Services.toLowerCase().includes(query) ||
+        levenshteinSentence(s.Services.toLowerCase(), query) ||
 
-        s.services.toLowerCase().includes(query) ||
-        levenshteinSentence(s.services.toLowerCase(), query) ||
+        s.Street1Addr.toLowerCase().includes(query) ||
+        levenshteinSentence(s.Street1Addr.toLowerCase(), query) ||
 
-        s.streetAddress1.toLowerCase().includes(query) ||
-        levenshteinSentence(s.streetAddress1.toLowerCase(), query) ||
+        s.Street2Addr.toLowerCase().includes(query) ||
+        levenshteinSentence(s.Street2Addr.toLowerCase(), query) ||
 
-        s.streetAddress2.toLowerCase().includes(query) ||
-        levenshteinSentence(s.streetAddress2.toLowerCase(), query) ||
+        s.Street3Addr.toLowerCase().includes(query) ||
+        levenshteinSentence(s.Street3Addr.toLowerCase(), query) ||
 
-        s.streetAddress3.toLowerCase().includes(query) ||
-        levenshteinSentence(s.streetAddress3.toLowerCase(), query) ||
-
-        s.city.toLowerCase().includes(query) ||
-        levenshteinSentence(s.city.toLowerCase(), query)
+        s.CityNm.toLowerCase().includes(query) ||
+        levenshteinSentence(s.CityNm.toLowerCase(), query)
     )
 
     if (matches.length > 0) {
@@ -923,14 +920,13 @@ item_searchBox.addEventListener("input", () => {
 
             // Find which field matched and show that value
             const fields = [
-                "supplierName",
-                "status",
-                "supplierNumber",
-                "services",
-                "streetAddress1",
-                "streetAddress2",
-                "streetAddress3",
-                "city"
+                "SupplierName",
+                "SupplierNumber",
+                "Services",
+                "Street1Addr",
+                "Street2Addr",
+                "Street3Addr",
+                "CityNm"
             ]
 
             let suggestion = ""
@@ -941,7 +937,7 @@ item_searchBox.addEventListener("input", () => {
                 }
             }
 
-            div.textContent = suggestion || match.supplierName
+            div.textContent = suggestion || match.SupplierName
 
             div.style.cursor = "pointer"
 
@@ -1013,13 +1009,13 @@ function loadConsideredSuppliersTable(){
     if (consideredCompanies != []){
         consideredCompanies.forEach(comp => {
             companyConsiderationPageTableContentRows.innerHTML += `
-                <tr data-id = "${comp.supplierNumber}">
-                    <td>${comp.supplierName}</td>
-                    <td>${comp.telephone}</td>
-                    <td>${comp.websiteAddress}</td>
-                    <td><textarea type="text" id="receivedResponse${comp.supplierNumber}${selectedItemID}" class="inputArea textArea"></textarea></td>
-                    <td><input type="text"  id="amount${comp.supplierNumber}${selectedItemID}" class="inputArea currency"></td>
-                    <td><textarea type="text" id="remarks${comp.supplierNumber}${selectedItemID}" class="inputArea textArea"></textarea></td
+                <tr data-id = "${comp.SupplierNumber}">
+                    <td>${comp.SupplierName}</td>
+                    <td>${comp.TelephoneNum}</td>
+                    <td>${comp.CompanyWebsiteUrl}</td>
+                    <td><textarea type="text" id="receivedResponse${comp.SupplierNumber}${selectedItemID}" class="inputArea textArea"></textarea></td>
+                    <td><input type="text"  id="amount${comp.SupplierNumber}${selectedItemID}" class="inputArea currency"></td>
+                    <td><textarea type="text" id="remarks${comp.SupplierNumber}${selectedItemID}" class="inputArea textArea"></textarea></td
                 </tr>
             `
         })   
@@ -1092,11 +1088,11 @@ function loadItemSuppliersTable(data){
     if (data != []){
         data.forEach(entry => {
             item_browseSuppliersPageTableContentRows.innerHTML += `
-                <tr data-id = "${entry.supplierNumber}">
-                    <td>${entry.supplierName}</td>
-                    <td>${entry.status}</td>
-                    <td>${entry.telephone}</td>
-                    <td>${entry.websiteAddress}</td>
+                <tr data-id = "${entry.SupplierNumber}">
+                    <td>${entry.SupplierName}</td>
+                    <td>${entry.Status}</td>
+                    <td>${entry.TelephoneNum}</td>
+                    <td>${entry.CompanyWebsiteUrl}</td>
                 </tr>
             `
         })
@@ -1110,11 +1106,11 @@ function loadSuppliersTable(data){
     if (data != []){
         data.forEach(entry => {
             browseSuppliersPageTableContentRows.innerHTML += `
-                <tr data-id = "${entry.supplierNumber}">
-                    <td>${entry.supplierName}</td>
-                    <td>${entry.status}</td>
-                    <td>${entry.telephone}</td>
-                    <td>${entry.websiteAddress}</td>
+                <tr data-id = "${entry.SupplierNumber}">
+                    <td>${entry.SupplierName}</td>
+                    <td>${entry.Status}</td>
+                    <td>${entry.TelephoneNum}</td>
+                    <td>${entry.CompanyWebsiteUrl}</td>
                 </tr>
             `
         })
