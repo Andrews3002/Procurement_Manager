@@ -7,6 +7,9 @@ selectedSupplierID = ""
 selectedItemSupplierID = ""
 selectedConsideredID = ""
 chosenCompanyIDpairs = []
+let currentPage = 1
+let item_currentPage = 1
+const rowsPerPage = 50
 
 function readJsonFile(filename){
     const filepath = path.join(__dirname, filename)
@@ -61,6 +64,8 @@ const browseSuppliersPage = document.querySelector('#browseSuppliersPage')
 const browseSuppliersPageButton = document.querySelector('#browseSuppliersPageButton')
 
 browseSuppliersPageButton.addEventListener('click', () => {
+    data = readJsonFile("suppliers.json") 
+    loadSuppliersTable(data)
     homePage.style.display = 'none'
     browseSuppliersPage.style.display = 'flex'
 })
@@ -223,6 +228,8 @@ companyConsiderationPageAddCompanyButton.addEventListener('click', () => {
 const item_browseSuppliersPageBackButton = document.querySelector('#item_browseSuppliersPageBackButton')
 
 item_browseSuppliersPageBackButton.addEventListener('click', () => {
+    data = readJsonFile("suppliers.json")
+    loadItemSuppliersTable(data)
     item_browseSuppliersPage.style.display = 'none'
     companyConsiderationPage.style.display = 'flex'
 })
@@ -1082,11 +1089,102 @@ function loadConsideredSuppliersTable(){
     })
 }
 
+const suppliersPreviousButton = document.getElementById("suppliersPreviousButton")
+const suppliersNextButton = document.getElementById("suppliersNextButton")
+
+suppliersPreviousButton.addEventListener("click", () => {
+    prevPage()
+})
+
+suppliersNextButton.addEventListener("click", () => {
+    const suppliers = readJsonFile('suppliers.json')
+    nextPage(suppliers)
+})
+
+const item_suppliersPreviousButton = document.getElementById("item_suppliersPreviousButton")
+const item_suppliersNextButton = document.getElementById("item_suppliersNextButton")
+
+item_suppliersPreviousButton.addEventListener("click", () => {
+    item_prevPage()
+})
+
+item_suppliersNextButton.addEventListener("click", () => {
+    const suppliers = readJsonFile('suppliers.json')
+    item_nextPage(suppliers)
+})
+
+// handle next/prev buttons
+function nextPage(data) {
+    if (currentPage < Math.ceil(data.length / rowsPerPage)) {
+        const suppliers = readJsonFile('suppliers.json')
+        currentPage++
+        loadSuppliersTable(suppliers)
+    }
+}
+
+function prevPage() {
+    if (currentPage > 1) {
+        const suppliers = readJsonFile('suppliers.json')
+        currentPage--
+        loadSuppliersTable(suppliers)
+    }
+}
+
+// handle next/prev buttons
+function item_nextPage(data) {
+    if (item_currentPage < Math.ceil(data.length / rowsPerPage)) {
+        const suppliers = readJsonFile('suppliers.json')
+        item_currentPage++
+        loadItemSuppliersTable(suppliers)
+    }
+}
+
+function item_prevPage() {
+    if (item_currentPage > 1) {
+        const suppliers = readJsonFile('suppliers.json')
+        item_currentPage--
+        loadItemSuppliersTable(suppliers)
+    }
+}
+
+function loadSuppliersTable(data) {
+    browseSuppliersPageTableContentRows.innerHTML = ''
+
+    // calculate slice indexes
+    const start = (currentPage - 1) * rowsPerPage
+    const end = start + rowsPerPage
+    const chunk = data.slice(start, end)
+
+    // build HTML
+    let html = ''
+    chunk.forEach(entry => {
+        html += `
+            <tr data-id="${entry.SupplierNumber}">
+                <td>${entry.SupplierName}</td>
+                <td>${entry.Status}</td>
+                <td>${entry.TelephoneNum}</td>
+                <td>${entry.CompanyWebsiteUrl}</td>
+            </tr>
+        `
+    })
+    browseSuppliersPageTableContentRows.innerHTML = html
+
+    // update page info
+    document.getElementById("suppliers-page-info").textContent =
+        `Page ${currentPage} of ${Math.ceil(data.length / rowsPerPage)}`
+}
+
+
+
 function loadItemSuppliersTable(data){
     item_browseSuppliersPageTableContentRows.innerHTML = ''
 
     if (data != []){
-        data.forEach(entry => {
+        const start = (item_currentPage - 1) * rowsPerPage
+        const end = start + rowsPerPage
+        const chunk = data.slice(start, end)
+
+        chunk.forEach(entry => {
             item_browseSuppliersPageTableContentRows.innerHTML += `
                 <tr data-id = "${entry.SupplierNumber}">
                     <td>${entry.SupplierName}</td>
@@ -1098,24 +1196,9 @@ function loadItemSuppliersTable(data){
         })
     }
 
-}
-
-function loadSuppliersTable(data){
-    browseSuppliersPageTableContentRows.innerHTML = ''
-
-    if (data != []){
-        data.forEach(entry => {
-            browseSuppliersPageTableContentRows.innerHTML += `
-                <tr data-id = "${entry.SupplierNumber}">
-                    <td>${entry.SupplierName}</td>
-                    <td>${entry.Status}</td>
-                    <td>${entry.TelephoneNum}</td>
-                    <td>${entry.CompanyWebsiteUrl}</td>
-                </tr>
-            `
-        })
-    }
-
+    // update page info
+    document.getElementById("item_suppliers-page-info").textContent =
+        `Page ${item_currentPage} of ${Math.ceil(data.length / rowsPerPage)}`
 }
 
 function loadRequestTable(data){
@@ -1142,8 +1225,24 @@ function loadRequestTable(data){
     })
 }
 
+const { ipcRenderer } = require('electron');
+
+document.getElementById("updateDatabaseButton").addEventListener("click", () => {
+    const email = document.getElementById("oprEmail").value;
+    const password = document.getElementById("oprPassword").value;
+    const question = document.getElementById("securityQuestionsDropdownMenu").value;
+    const answer = document.getElementById("securityQuestionAnswer").value;
+
+    ipcRenderer.send('run-python', { email, password, question, answer })
+
+    // document.getElementById("oprEmail").value = ''
+    // document.getElementById("oprPassword").value = ''
+    // document.getElementById("securityQuestionAnswer").value = ''
+});
+
 document.addEventListener('DOMContentLoaded', () => {
     const suppliers = readJsonFile('suppliers.json')
+    console.log(suppliers.length, ' companies')
     loadSuppliersTable(suppliers)
     loadItemSuppliersTable(suppliers)
     const items = sortItems(readJsonFile('items.json'))

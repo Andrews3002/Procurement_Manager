@@ -363,6 +363,42 @@ label{
     font-size: 1rem;
 }
 
+#suppliersPaginationDiv{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 5%;
+    width: 80%;
+}
+
+#suppliersPreviousButton,
+#suppliersNextButton{
+    height: 30px;
+    width: 20%;
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+#item_suppliersPaginationDiv{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 5%;
+    width: 80%;
+}
+
+#item_suppliersPreviousButton,
+#item_suppliersNextButton{
+    height: 30px;
+    width: 20%;
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------------- */
 #supplierDetailsPage{
     justify-content: flex-start;

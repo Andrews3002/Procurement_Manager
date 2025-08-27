@@ -1,6 +1,7 @@
-const {app, BrowserWindow} = require("electron")
+const {app, BrowserWindow, ipcMain} = require("electron")
 const path = require("path")
 const { contextIsolated } = require("process")
+const { spawn } = require('child_process')
 
 const isMac = process.platform === 'darwin'
 const isDev = process.env.NODE_ENV != 'development'
@@ -44,4 +45,28 @@ app.addListener('window-all-closed', () => {
         app.quit()
     }
 })
+
+ipcMain.on('run-python', (event, formData) => {
+    console.log("Received form data:", formData);
+
+    const pythonProcess = spawn('python', ['renderer/scrapper.py', 
+        formData.email, 
+        formData.password, 
+        formData.question, 
+        formData.answer
+    ]);
+
+    pythonProcess.stdout.on('data', (data) => {
+        console.log(`stdout: ${data}`);
+        event.reply('python-output', data.toString());
+    });
+
+    pythonProcess.stderr.on('data', (data) => {
+        console.error(`stderr: ${data}`);
+    });
+
+    pythonProcess.on('close', (code) => {
+        console.log(`Python process exited with code ${code}`);
+    });
+});
 

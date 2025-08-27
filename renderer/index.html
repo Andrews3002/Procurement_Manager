@@ -4,9 +4,9 @@
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="./style.css">
     <script src="./renderer.js" defer></script>
-    <meta http-equiv="Content-Security-Policy" content="script-src 'self">
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self'">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-sclae=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Procurement Manager</title>
 </head>
 <body>
@@ -38,12 +38,12 @@
         <div class="card" id="updateDatabasePageMainCard">
             <h1>Enter OPR Login Information</h1>
             <input type="text" class="inputField" id="oprEmail" placeholder="Email">
-            <input type="text" class="inputField" id="oprPassword" placeholder="Password">
+            <input type="password" class="inputField" id="oprPassword" placeholder="Password">
             <div id="securityQuestionsDropdownContainer">
                 <select name="securityQuestionsDropdownMenu" id="securityQuestionsDropdownMenu" class="button">
                     <option value="createdAsc">Where was your first job?</option>
-                    <option value="createdDesc">Where was the CityNm you met your spouse?</option>
-                    <option value="itemNameAsc">Who is your favourite singer?</option>
+                    <option value="createdDesc">What is the name of the city where you met your spouse?</option>
+                    <option value="itemNameAsc">Who was your favourite singer?</option>
                 </select>
                 <input type="text" class="inputField" id="securityQuestionAnswer" placeholder="Answer">
             </div>
@@ -92,6 +92,11 @@
                 <!-- the opr registered companies will populate the table here -->
             </tbody>
         </table>
+        <div id="suppliersPaginationDiv">
+            <button class="button" id="suppliersPreviousButton">Previous</button>
+            <p id="suppliers-page-info"></p>
+            <button class="button" id="suppliersNextButton">Next</button>
+        </div>
     </div>
 
     <!-- Inner Company Details Page ------------------------------------------------------------------------>
@@ -354,6 +359,11 @@
                 <!-- the opr registered companies will populate the table here -->
             </tbody>
         </table>
+        <div id="item_suppliersPaginationDiv">
+            <button class="button" id="item_suppliersPreviousButton">Previous</button>
+            <p id="item_suppliers-page-info"></p>
+            <button class="button" id="item_suppliersNextButton">Next</button>
+        </div>
     </div>
 
     <!-- checking the details of the company that will possibly be considered ---------------------------------------------------------- -->
