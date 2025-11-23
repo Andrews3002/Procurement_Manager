@@ -1,0 +1,24 @@
+[
+  {
+    "requestedItemID": 2,
+    "requestedItem": "test",
+    "dateRequested": {
+      "day": "6",
+      "month": "6",
+      "year": "2006"
+    },
+    "pendingCompanies": [],
+    "selectedCompany": "pending"
+  },
+  {
+    "requestedItemID": 5,
+    "requestedItem": "test",
+    "dateRequested": {
+      "day": "6",
+      "month": "6",
+      "year": "2006"
+    },
+    "pendingCompanies": [],
+    "selectedCompany": "pending"
+  }
+]
